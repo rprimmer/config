@@ -1,0 +1,5 @@
+goto_end = OFF
+goto_end_ov = \^a
+insert = \^e
+insert_space = ON
+home = \^h
