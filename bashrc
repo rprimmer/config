@@ -37,6 +37,7 @@ alias fdc='ls -AF | fgrep / | column || echo "No sub-directoris"'
 alias dt="echo `date | cut -c1-11` `date | cut -c12-19`"      # current date and time
 alias external-ip="curl -s http://ipecho.net/plain ; echo"
 alias clean-tex="rm -rf *.dvi *.log *.aux *.bak *.out auto/"  # clean up after latex build
+alias rp=realpath 
 
 # Full recursive directory listing
 alias lr='/bin/ls -RA | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\''  '
@@ -82,8 +83,8 @@ alias eject-disk="drutil tray eject"        # Eject CD
 alias metadata-info="mdimport -td2 $1"
 alias network-name="networksetup -getairportnetwork en2 | awk -F: '{print $2}'"
 
-trash () { command mv "$@" ~/.Trash ; }     # Move file to macOS trash
-ql () { qlmanage -p "$*" >& /dev/null ; }   # Open file in macOS Quicklook preview
+t () { command mv "$@" ~/.Trash ; }         # Move file(s) to macOS trash
+ql () { qlmanage -p "$*" >& /dev/null ; }   # Open file(s) in macOS Quicklook preview
 spotlight() { mdfind -name "$@" ; }         # find files with macOS spotlight metadata search
 
 # cd(1) to the dir in active macOS Finder 
@@ -109,12 +110,13 @@ ic () {
             cd ~/ic             # iCloud
    else
        case $1 in
-            c)   cd ~/icc   ;;  # linux/config
+            c)   cd ~/icc  ;;   # linux/config
+            k)   cd ~/ick  ;;   # Keynote
+            l)   cd ~/icl  ;;   # linux
+            n)   cd ~/icn  ;;   # Numbers            
             p)   cd ~/icp  ;;   # Pages
-            k)   cd ~/ick   ;;  # Keynote
-            n)   cd ~/icn  ;;   # Numbers
             pr)  cd ~/icpr ;;   # Preview
-            ?)   echo "c - config; p - pages; k - keynote; n - numbers; pr - preview" ;;
+            ?)   echo "c - config; k - keynote; l - linux; n - numbers; p - pages; pr - preview" ;;
             *)   echo "'$1' invalid option" ;;
        esac
     fi
