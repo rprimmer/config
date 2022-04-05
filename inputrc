@@ -1,0 +1,9 @@
+# ~/.inputrc:  config for readline library
+set colored-stats On              # use different colors to indicate different file types
+set completion-ignore-case On     # ignore case for command line completion 
+set mark-symlinked-directories On # symlink to a directory has slash appended
+set show-all-if-ambiguous on      # command completion with single tab instead of default two tabs
+set show-all-if-unmodified On     # similar to above 
+set visible-stats On              # a character denoting a file’s type is appended to the filename when listing possible completions
+# set bell-style none		      # turn off audible bell
+# set editing-mode vi             # use vi mode instead of default emacs mode
