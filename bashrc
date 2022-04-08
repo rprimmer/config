@@ -38,6 +38,7 @@ alias dt="echo `date | cut -c1-11` `date | cut -c12-19`"      # current date and
 alias external-ip="curl -s http://ipecho.net/plain ; echo"
 alias clean-tex="rm -rf *.dvi *.log *.aux *.bak *.out auto/"  # clean up after latex build
 alias rp='realpath .' 
+alias b=bat
 
 # Full recursive directory listing
 alias lr='/bin/ls -RA | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\''  '
