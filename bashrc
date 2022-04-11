@@ -35,17 +35,16 @@ alias fd='ls -lA | egrep "^d" || echo "No sub-directories"'
 alias fl='ls -lA | egrep "^l" || echo "No soft links"'
 alias fdc='ls -AF | fgrep / | column || echo "No sub-directoris"'
 alias dt="echo `date | cut -c1-11` `date | cut -c12-19`"      # current date and time
-alias external-ip="curl -s http://ipecho.net/plain ; echo"
 alias clean-tex="rm -rf *.dvi *.log *.aux *.bak *.out auto/"  # clean up after latex build
 alias rp='realpath .' 
 alias b=bat
-alias netSpeed="networkQuality -v"
 
 # Full recursive directory listing
 alias lr='/bin/ls -RA | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\''  '
 
 # Network aliases 
 alias myip='echo -n "External IP address: " ; dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
+alias external-ip="curl -s http://ipecho.net/plain ; echo"
 alias myWirelessAddress='echo -n "Wireless address: " ; ipconfig getifaddr en1'
 alias myEthernetAddress='echo -n "Ethernet address: " ; ipconfig getifaddr en0 ; echo'
 alias lsock='sudo /usr/sbin/lsof -i -P'               # list open sockets
@@ -53,6 +52,7 @@ alias lsockudp='sudo /usr/sbin/lsof -nP | grep UDP'   # display only UDP sockets
 alias lsocktcp='sudo /usr/sbin/lsof -nP | grep TCP'   # display only TCP sockets
 alias ipinfoen0='ipconfig getpacket en0'              # info on connections to en0
 alias openports='sudo lsof -i | grep LISTEN'
+alias netSpeed="networkQuality -v"
 
 # hash specific commands outside normal search list
 hash -p /usr/sbin/chown chown
@@ -76,7 +76,6 @@ dup () { cp "$1" "$1-COPY" ; }              # duplicate a file
 tab2sp () { sed -i '' $'s/\t/    /g' $(find . -name "$1") ; }  #convert tabs to 4 spaces
 
 # macOS specific 
-hash -p /usr/bin/networkQuality networkQuality
 alias clipboard-to-stdout="/usr/bin/pbpaste | textutil -convert txt -stdin -stdout -encoding UTF-8 ; echo"
 alias finder='open -a Finder ./'            # Open currect dir in macOS Finder
 alias listnet="networksetup -listallhardwareports" # List all network hardware
