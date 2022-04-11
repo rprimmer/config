@@ -11,7 +11,7 @@ export MANPATH=/usr/local/share/man:/usr/share/man:/Library/Apple/usr/share/man:
 # cf. https://tinyurl.com/2c7jpm2f
 export QUOTING_STYLE=literal
 
-# Chaning prompt to use colors messes up iTerm's ability to return cursor to BOL
+# Changing prompt to use colors messes up iTerm's ability to return cursor to Beginning of Line
 # export PS1="\e[1;34m\w$ \e[m"          # light blue prompt
 export PS1="\\w\\$ "
 
