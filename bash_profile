@@ -2,7 +2,7 @@
 
 export BASH=/usr/local/bin/bash   # Use brew version of bash, Apple's version is ancient
 export SHELL=/usr/local/bin/bash  
-export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/TeX/texbin
 export MANPATH=/usr/local/share/man:/usr/share/man:/Library/Apple/usr/share/man:/usr/lib/*/man:/usr/share/*/man:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man/:/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/man:/Library/Developer/CommandLineTools/usr/share/man/
 
 # gls(1) by default adds single quotes around filenames with spaces.
