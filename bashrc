@@ -58,6 +58,7 @@ alias netSpeed="networkQuality -v"
 hash -p /usr/sbin/chown chown
 hash -p /usr/sbin/init init
 hash -p /sbin/shutdown shutdown
+hash -p /Applications/Doxygen.app/Contents/Resources/doxygen doxygen
 
 # Functions
 
