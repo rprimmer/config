@@ -12,35 +12,38 @@ shopt -s cdspell           # correct minor spelling erros on cd command
 shopt -s checkjobs         # don't exit bash on first exit if running jobs exist
 umask 077                  # set default permissions for regular files
 
-alias vi="nvim"
-alias pu="pushd $1"
-alias pp="popd"
+alias b=bat
+alias df="duf --hide-mp '*time*'"
+alias dt="echo `date | cut -c1-11` `date | cut -c12-19`"  # current date and time
+alias du="dust"
 alias h='history | tail -n 30'
-alias pss='ps aux | less'
-alias wh='who -uTH'
-alias path='echo -e ${PATH//:/\\n}'      # display all executabe paths
 alias numFiles='echo $(ls -1 | wc -l)'   # count of non-hidden files in current dir
 alias make1mb='mkfile -v 1m ./1MB.dat'   # creates a file of 1mb size (all zeros)
 alias memHogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
-alias tarball='tar cjvf $1 $2'
-alias untarball='tar xjvf $1'
-
-eval $(gdircolors ~/.dircolors/dircolors.256dark)  # set dircolors 
-alias ls='gls --color=auto -F'  # use GNU gls(1) with gdircolors
-alias l.="ls -dF .*"
-alias ll="ls -lF $*"
-alias lll="ls -lAhF $*"
-alias ls-by-size="ls -hklsS $*"
-alias fd='ls -lA | egrep "^d" || echo "No sub-directories"'
-alias fl='ls -lA | egrep "^l" || echo "No soft links"'
-alias fdc='ls -AF | fgrep / | column || echo "No sub-directoris"'
-alias dt="echo `date | cut -c1-11` `date | cut -c12-19`"      # current date and time
-alias clean-tex="rm -rf *.dvi *.log *.aux *.bak *.out auto/"  # clean up after latex build
+alias path='echo -e ${PATH//:/\\n}'      # display all executabe paths
+alias pp="popd"
+alias pu="pushd $1"
+alias pss='ps aux | less'
 alias rp='realpath .' 
-alias b=bat
+alias tarball='tar cjvf $1 $2'
+alias top="btop"
+alias untarball='tar xjvf $1'
+alias vi="nvim"
+alias wh='who -uTH'
 
-# Full recursive directory listing
-alias lr='/bin/ls -RA | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\''  '
+# gls / exa specific aliases 
+eval $(gdircolors ~/.dircolors/dircolors.256dark)  # set dircolors 
+alias ls="exa"
+alias l.="exa -dF .*"
+alias ll="exa -lF $*"
+alias lll="gls -lAhF $*"
+alias lsg="exa --long --header --git"
+alias lst="exa -tree $*"
+alias ls-by-size="exa --sort=size -l --reverse"
+# alias fd='ls -lA | egrep "^d" || echo "No sub-directories"'
+alias fl='gls -lA | egrep "^l" || echo "No soft links"'
+# alias fdc='ls -AF | fgrep / | column || echo "No sub-directoris"'
+alias fdc="exa --only-dirs"
 
 # Network aliases 
 alias myip='echo -n "External IP address: " ; dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
@@ -63,7 +66,7 @@ hash -p /Applications/Doxygen.app/Contents/Resources/doxygen doxygen
 # Functions
 
 # display the top 10 commands in history buffer 
-function top10 {
+top10 () {
    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
@@ -72,7 +75,7 @@ lcd () { cd $1 ; ls  -AFl ; }               # enter dir, list contents
 mans () { man $1 | grep -iC2 --color=always $2 ; } # Example:  mans ls term 
 hex2dec () { printf "%d\n" $1 ; }           # print hex input as decimal
 zipf () { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
-ff () { find . -name "$@" ; }               # find file(s) under the current directory
+# ff () { find . -name "$@" ; }             # unnecessary with fd(1)
 dup () { cp "$1" "$1-COPY" ; }              # duplicate a file
 tab2sp () { sed -i '' $'s/\t/    /g' $(find . -name "$1") ; }  #convert tabs to 4 spaces
 
