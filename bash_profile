@@ -15,10 +15,15 @@ export QUOTING_STYLE=literal
 # export PS1="\e[1;34m\w$ \e[m"          # light blue prompt
 export PS1="\\w\\$ "
 
-export CLICOLOR=1                        # use colors for ls(1) command
-export LSCOLORS=Exfxcxdxbxegedabagacad   # set LS colors; cf. ls(1) for details
+# Uncomment to get color for {g,}ls(1)
+# export CLICOLOR=1                        # use colors for ls(1) command
+# export LSCOLORS=Exfxcxdxbxegedabagacad   # set LS colors; cf. ls(1) for details
+
+# To set colors for exa(1), cf. exa_colors(5)
 
 # set up Auto Jump for shell
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
  
 test -r ~/.bashrc && source ~/.bashrc    # .bashrc to continue setup 
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

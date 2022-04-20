@@ -1,4 +1,5 @@
 # ~/.inputrc:  config for readline library
+
 set colored-stats On              # use different colors to indicate different file types
 set completion-ignore-case On     # ignore case for command line completion 
 set mark-symlinked-directories On # symlink to a directory has slash appended

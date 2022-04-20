@@ -14,11 +14,11 @@ umask 077                  # set default permissions for regular files
 
 alias b=bat
 alias df="duf --hide-mp '*time*'"
-alias dt="echo `date | cut -c1-11` `date | cut -c12-19`"  # current date and time
 alias du="dust"
 alias h='history | tail -n 30'
-alias numFiles='echo $(ls -1 | wc -l)'   # count of non-hidden files in current dir
+alias numFiles='echo $(gls -1 | wc -l)'  # count of non-hidden files in current dir
 alias make1mb='mkfile -v 1m ./1MB.dat'   # creates a file of 1mb size (all zeros)
+alias manpath='echo -e ${MANPATH//:/\\n}'  # display MANPATH
 alias memHogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 alias path='echo -e ${PATH//:/\\n}'      # display all executabe paths
 alias pp="popd"
@@ -28,10 +28,10 @@ alias rp='realpath .'
 alias tarball='tar cjvf $1 $2'
 alias top="btop"
 alias untarball='tar xjvf $1'
-alias vi="nvim"
+alias vi="/usr/local/bin/vim"
 alias wh='who -uTH'
 
-# gls / exa specific aliases 
+# gls / exa aliases 
 eval $(gdircolors ~/.dircolors/dircolors.256dark)  # set dircolors 
 alias ls="exa"
 alias l.="exa -dF .*"
@@ -39,10 +39,9 @@ alias ll="exa -lF $*"
 alias lll="gls -lAhF $*"
 alias lsg="exa --long --header --git"
 alias lst="exa -tree $*"
+alias lsm="exa --sort=modified --reverse -lF"
 alias ls-by-size="exa --sort=size -l --reverse"
-# alias fd='ls -lA | egrep "^d" || echo "No sub-directories"'
 alias fl='gls -lA | egrep "^l" || echo "No soft links"'
-# alias fdc='ls -AF | fgrep / | column || echo "No sub-directoris"'
 alias fdc="exa --only-dirs"
 
 # Network aliases 
@@ -71,7 +70,7 @@ top10 () {
 }
 
 mkd () { mkdir -p "$1" && cd "$1" ; }       # create a new dir and enter it
-lcd () { cd $1 ; ls  -AFl ; }               # enter dir, list contents 
+lcd () { cd $1 ; exa  -aFl ; }              # enter dir, list contents 
 mans () { man $1 | grep -iC2 --color=always $2 ; } # Example:  mans ls term 
 hex2dec () { printf "%d\n" $1 ; }           # print hex input as decimal
 zipf () { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder

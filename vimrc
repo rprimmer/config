@@ -1,5 +1,5 @@
 set shell=/usr/local/bin/bash
-"set dictionary=/usr/share/dict/words
+set dictionary=/usr/share/dict/words
 set expandtab                   " convert tabs to spaces
 "set smarttab                   " tabs are used for indentation only (requires ctab package)
 set softtabstop=4               " set tab stop width
@@ -7,10 +7,10 @@ set shiftwidth=4                " set number of charcaters for indentation
 set autoindent                  " copies indentation from previous line
 set smartindent                 " automatically inserts a level of indentation in some cases
 set cindent                     " special intentation for C/C++ code
-set showmatch                   " show matching braces
 set selectmode=mouse            " allow mouse to select an area
 set mouse=a                     " use mouse for all modes
 set showcmd                     " show uncompleted command
+set showmatch                   " show matching braces    
 set showmode                    " show mode in command screen
 set ruler                       " show line and column info
 set number                      " show line numbers
