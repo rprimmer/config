@@ -2,8 +2,11 @@
 
 export BASH=/usr/local/bin/bash   # Use brew version of bash, Apple's version is ancient
 export SHELL=/usr/local/bin/bash  
-export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/TeX/texbin
-export MANPATH=/usr/local/share/man:/usr/share/man:/Library/Apple/usr/share/man:/usr/lib/*/man:/usr/share/*/man:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man/:/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/man:/Library/Developer/CommandLineTools/usr/share/man/
+export PATH="~/bin:$PATH" 
+# MANPATH is different on macOS, seemingly automatically created, use man -w to display
+# To set a  MANPATH enviroment variable, uncomment the next two lines
+#export MANPATH=    # This needs to proceed path_helper 
+#eval `/usr/libexec/path_helper -s`
 
 # gls(1) by default adds single quotes around filenames with spaces.
 # To get back to standard ls(1) behavior use -N or export this variable. 
