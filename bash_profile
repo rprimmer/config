@@ -3,10 +3,6 @@
 export BASH=/usr/local/bin/bash   # Use brew version of bash, Apple's version is ancient
 export SHELL=/usr/local/bin/bash  
 export PATH="~/bin:$PATH" 
-# MANPATH is different on macOS, seemingly automatically created, use man -w to display
-# To set a  MANPATH enviroment variable, uncomment the next two lines
-#export MANPATH=    # This needs to proceed path_helper 
-#eval `/usr/libexec/path_helper -s`
 
 # gls(1) by default adds single quotes around filenames with spaces.
 # To get back to standard ls(1) behavior use -N or export this variable. 
