@@ -1,5 +1,9 @@
 set shell=/usr/local/bin/bash
 set dictionary=/usr/share/dict/words
+set spell spelllang=en_us       " set language for spellcheck 
+highlight clear SpellBad        " turn off highlighting for mispelled words
+highlight SpellBad cterm=underline " use underline for mispelled words (not highlighting) on terminals
+highlight SpellBad gui=undercurl   " use squiglly lines on gui version of vim
 set expandtab                   " convert tabs to spaces
 "set smarttab                   " tabs are used for indentation only (requires ctab package)
 set softtabstop=4               " set tab stop width
@@ -25,7 +29,6 @@ set nolist                      " don't insert linebreaks except when CR explici
 set textwidth=0                 " prevent vim from automatically entering linebreaks for new text
 set wrapmargin=0                " used in concert with textwidth=0 for same reason
 set showbreak=++++              " chars to indicate a line break
-set hlsearch                    " enable search highlighting (:noh to turn off hightlights)
 set backspace=indent,eol,start  " allow backspacing overy everything in insert mode
 set wildmenu                    " display completion matches in a status line
 set ttimeout                    " time out for key codes
@@ -33,6 +36,7 @@ set ttimeoutlen=100             " wait up to 100ms after Esc for special key
 set display=truncate            " show @@@ in the last line if it is truncated
 
 syntax on                       " use syntax highlighting
+"set hlsearch                   " enable search highlighting (:noh to turn off hightlights)
 
 " Turn on spellcheck for markdown docs
 autocmd BufRead,BufNewFile *.md setlocal spell
