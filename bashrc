@@ -14,7 +14,6 @@ umask 077                  # set default permissions for regular files
 
 alias b=bat
 alias df="duf --hide-mp '*time*'"
-alias du="dust"
 alias h='history | tail -n 30'
 alias numFiles='echo $(gls -1 | wc -l)'  # count of non-hidden files in current dir
 alias make1mb='mkfile -v 1m ./1MB.dat'   # creates a file of 1mb size (all zeros)
@@ -71,7 +70,7 @@ top10 () {
 mkd () { mkdir -p "$1" && cd "$1" ; }       # create a new dir and enter it
 lcd () { cd $1 ; exa  -aFl ; }              # enter dir, list contents 
 mans () { man $1 | grep -iC2 --color=always $2 ; } # Example:  mans ls term 
-hex2dec () { printf "%d\n" $1 ; }           # print hex input as decimal
+hex2dec () { printf "%d\n" $1 ; }           # print hex (0xn) or octal (0n) as decimal
 zipf () { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
 # ff () { find . -name "$@" ; }             # unnecessary with fd(1)
 dup () { cp "$1" "$1-COPY" ; }              # duplicate a file
@@ -113,13 +112,15 @@ ic () {
             cd ~/ic             # iCloud
    else
        case $1 in
-            c)   cd ~/icc  ;;   # linux/config
-            k)   cd ~/ick  ;;   # Keynote
-            l)   cd ~/icl  ;;   # linux
-            n)   cd ~/icn  ;;   # Numbers            
-            p)   cd ~/icp  ;;   # Pages
-            pr)  cd ~/icpr ;;   # Preview
-            ?)   echo "c - config; k - keynote; l - linux; n - numbers; p - pages; pr - preview" ;;
+            c)   cd ~/ic/linux/config  ;; # config
+            k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents   ;;   # Keynote
+            l)   cd ~/ic/linux  ;;   
+            m)   cd ~/ic/Markdown  ;; 
+            n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents   ;;   # Numbers            
+            p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents    ;;   # Pages
+            pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents  ;;   # Preview
+            s)   cd ~/ic/src-ic  ;;   # sources 
+            ?)   echo "c - config; k - keynote; l - linux; m - markdown; n - numbers; p - pages; pr - preview; s - src" ;;
             *)   echo "'$1' invalid option" ;;
        esac
     fi
