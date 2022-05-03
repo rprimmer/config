@@ -1,7 +1,18 @@
 # ~/.bash_profile
 
-export BASH=/usr/local/bin/bash   # Use brew version of bash, Apple's version is ancient
-export SHELL=/usr/local/bin/bash  
+# Homebrew is loacted in /usr/local on Intel macs and /opt/homebrew on ARM macs 
+if [ -d "/usr/local/Caskroom" ]; then
+    BREW_PATH=/usr/local/bin
+else
+    BREW_PATH=/opt/homebrew/bin
+fi
+
+# Set PATH and environment vars for homebrew (cf. man brew)
+eval "$(${BREW_PATH}/brew shellenv)"
+
+# Use brew version of bash, Apple's version is ancient
+export BASH=$BREW_PATH/bash   
+export SHELL=$BREW_PATH/bash  
 export PATH="~/bin:$PATH" 
 
 # gls(1) by default adds single quotes around filenames with spaces.
