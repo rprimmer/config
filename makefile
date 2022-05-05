@@ -17,7 +17,7 @@ BIN=$(BINDIR)/myapp
 
 all: $(BIN)
 
-release: CFLAGS=-Wall -Wextra -O2 -NDEBUG
+release: CFLAGS=-Wall -Wextra -O2 -DNDEBUG
 release: clean
 release: $(BIN)
 
