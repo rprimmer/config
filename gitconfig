@@ -4,8 +4,8 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = rprimmer
-	email = Robert.primmer@gmail.com
+	name = Robert Primmer
+	email = robert.primmer@gmail.com
 [core]
 	autocrlf = input
 [diff]
