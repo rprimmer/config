@@ -2,18 +2,18 @@
 
 # Homebrew is loacted in /usr/local on Intel macs and /opt/homebrew on ARM macs 
 if [ -d "/usr/local/Caskroom" ]; then
-    BREW_PATH=/usr/local/bin
+    BREW_PATH=/usr/local
 else
-    BREW_PATH=/opt/homebrew/bin
+    BREW_PATH=/opt/homebrew
 fi
 
 # Set PATH and environment vars for homebrew (cf. man brew)
-eval "$(${BREW_PATH}/brew shellenv)"
+eval "$(${BREW_PATH}/bin/brew shellenv)"
 
 # Use brew version of bash, Apple's version is ancient
-export BASH=$BREW_PATH/bash   
-export SHELL=$BREW_PATH/bash  
-export PATH="~/bin:$PATH" 
+export BASH=${BREW_PATH}/bin/bash   
+export SHELL=${BREW_PATH}/bin/bash  
+export PATH="~/bin:${PATH}" 
 
 # gls(1) by default adds single quotes around filenames with spaces.
 # To get back to standard ls(1) behavior use -N or export this variable. 
@@ -32,8 +32,8 @@ export PS1="\\w\\$ "
 # To set colors for exa(1), cf. exa_colors(5)
 
 # set up Auto Jump for shell
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
- 
-test -r ~/.bashrc && source ~/.bashrc    # .bashrc to continue setup 
+test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/profile.d/autojump.sh"
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+test -r "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+test -r ~/.bashrc && source ~/.bashrc   
