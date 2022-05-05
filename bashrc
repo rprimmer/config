@@ -36,7 +36,7 @@ alias l.="exa -dF .*"
 alias ll="exa -lF $*"
 alias lll="gls -lAhF $*"
 alias lsg="exa --long --header --git"
-alias lst="exa -tree $*"
+alias lst="exa -l --tree -L 2 $*"
 alias lsm="exa --sort=modified --reverse -lF"
 alias ls-by-size="exa --sort=size -l --reverse"
 alias fl='gls -lA | egrep "^l" || echo "No soft links"'
@@ -119,7 +119,7 @@ ic () {
             n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents   ;;   # Numbers            
             p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents    ;;   # Pages
             pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents  ;;   # Preview
-            s)   cd ~/ic/src-ic  ;;   # sources 
+            s)   cd ~/ic/src  ;;   # sources 
             ?)   echo "c - config; k - keynote; l - linux; m - markdown; n - numbers; p - pages; pr - preview; s - src" ;;
             *)   echo "'$1' invalid option" ;;
        esac
