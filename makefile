@@ -1,5 +1,5 @@
 # Generic C Makefile
-# Assumes src and obj subdirs. 
+# Assumes src, obj and bin subdirs 
 # Makes debug or release versions
 
 CC=clang
