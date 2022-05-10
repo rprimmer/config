@@ -43,8 +43,7 @@ alias fl='gls -lA | egrep "^l" || echo "No soft links"'
 alias fdc="exa --only-dirs"
 
 # Network aliases 
-alias myip='echo -n "External IP address: " ; dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
-alias external-ip="curl -s http://ipecho.net/plain ; echo"
+alias myip="curl -s http://ipecho.net/plain ; echo"
 alias myWirelessAddress='echo -n "Wireless address: " ; ipconfig getifaddr en1'
 alias myEthernetAddress='echo -n "Ethernet address: " ; ipconfig getifaddr en0 ; echo'
 alias lsock='sudo /usr/sbin/lsof -i -P'               # list open sockets
