@@ -10,7 +10,6 @@ set -m                     # enable job control
 set -o ignoreeof           # CTRL-D will not kill terminal session
 shopt -s cdspell           # correct minor spelling erros on cd command
 shopt -s checkjobs         # don't exit bash on first exit if running jobs exist
-umask 077                  # set default permissions for regular files
 
 alias b=bat
 alias df="duf --hide-mp '*time*'"
