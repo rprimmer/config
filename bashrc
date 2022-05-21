@@ -117,6 +117,7 @@ ic () {
             n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents   ;;   # Numbers            
             p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents    ;;   # Pages
             pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents  ;;   # Preview
+            s)   cd ~/Documents/src  ;;   # sources 
             ?)   echo "c - config; k - keynote; l - linux; m - markdown; n - numbers; p - pages; pr - preview; s - src" ;;
             *)   echo "'$1' invalid option" ;;
        esac
