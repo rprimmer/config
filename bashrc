@@ -32,10 +32,10 @@ alias wh='who -uTH'
 eval $(gdircolors ~/.dircolors/dircolors.256dark)  # set dircolors 
 alias ls="exa"
 alias l.="exa -dF .*"
-alias ll="exa -lF $*"
-alias lll="gls -lAhF $*"
+alias ll="exa -lF $@"
+alias lll="gls -lAhF $@"
 alias lsg="exa --long --header --git"
-alias lst="exa -l --tree -L 2 $*"
+alias lst="exa -l --tree -L 2 $@"
 alias lsm="exa --sort=modified --reverse -lF"
 alias ls-by-size="exa --sort=size -l --reverse"
 alias fl='gls -lA | egrep "^l" || echo "No soft links"'
@@ -65,10 +65,10 @@ top10 () {
    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
-mkd () { mkdir -p "$1" && cd "$1" ; }       # create a new dir and enter it
-lcd () { cd $1 ; exa  -aFl ; }              # enter dir, list contents 
-mans () { man $1 | grep -iC2 --color=always $2 ; } # Example:  mans ls term 
-hex2dec () { printf "%d\n" $1 ; }           # print hex (0xn) or octal (0n) as decimal
+mkd () { mkdir -p "$@" && cd "$_" ; }       # create a new dir and enter it
+lcd () { cd "$@" ; exa  -aFl ; }              # enter dir, list contents 
+mans () { man "$@" | grep -iC2 --color=always $2 ; } # Example:  mans ls term 
+hex2dec () { printf "%d\n" "$@" ; }         # print hex (0xn) or octal (0n) as decimal
 zipf () { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
 # ff () { find . -name "$@" ; }             # unnecessary with fd(1)
 dup () { cp "$1" "$1-COPY" ; }              # duplicate a file
