@@ -1,0 +1,21 @@
+CC :=     	clang
+CFLAGS := 	-Wall -Wextra -g
+BIN :=		progs
+# FILE :=		input-file
+
+all: $(BIN)
+
+%: %.c
+	$(CC) $(CFLAGS) $< -o $@
+
+%: %.cpp
+	$(CC) $(CFLAGS) $< -o $@
+
+readme: README.md
+	pandoc README.md -o readme.pdf
+
+timing: $(BIN)
+	time ./prog $(FILE)
+
+clean:
+	rm -rf $(BIN) *.dSYM readme.pdf
