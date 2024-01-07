@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Configure soft links for new system set up
+# Configure home directory soft links for new system set up
 pushd ${HOME} || return 
 ln -fs ${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs/ ic
 
@@ -17,5 +17,6 @@ ln -fs ic/linux/config/vimrc          .vimrc
 ln -fs ic/linux/config/emacs          .xemacs
 ln -fs ic/Swift                       Swift 
 ln -fs ic/linux/bin                   bin 
+ln -fs ic/Downloads                   Downloads
 
 popd 

@@ -4,6 +4,7 @@ HISTSIZE=300               # number of commands to save in history file
 HISTIGNORE="?:??:&:exit"   # & says ignore duplicate cmds, ?:?? ignore 1 or 2 letter cmds
 FIGNORE=".o:~"             # ignore these on cmd line completion
 FCEDIT=vi                  # use vi for fc bash builtin
+EDITOR=vi 
 
 # Set shell options 
 set -m                     # enable job control
@@ -25,8 +26,9 @@ alias rp='realpath .'
 alias tarball='tar cjvf $1 $2'
 alias top="btop"
 alias untarball='tar xjvf $1'
-alias vi="/usr/local/bin/vim"
+alias vi="vim"
 alias wh='who -uTH'
+alias xcf='find $HOME/Library -name $1' # xcode find - find console app by name
 
 # gls / exa aliases 
 eval $(gdircolors ~/.dircolors/dircolors.256dark)  # set dircolors 
@@ -35,7 +37,7 @@ alias l.="exa -dF .*"
 alias ll="exa -lF $@"
 alias lll="gls -lAhF $@"
 alias lsg="exa --long --header --git"
-alias lst="exa -l --tree -L 2 $@"
+alias lst="exa --tree -L 2 $@"
 alias lsm="exa --sort=modified --reverse -lF"
 alias ls-by-size="exa --sort=size -l --reverse"
 alias fl='gls -lA | egrep "^l" || echo "No soft links"'
@@ -118,6 +120,7 @@ ic () {
             p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents    ;;   # Pages
             pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents  ;;   # Preview
             s)   cd ~/Documents/src  ;;   # sources 
+            sw)  cd ~/ic/Swift ;;           
             ?)   echo "c - config; k - keynote; l - linux; m - markdown; n - numbers; p - pages; pr - preview; s - src" ;;
             *)   echo "'$1' invalid option" ;;
        esac
