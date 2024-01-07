@@ -31,18 +31,18 @@ alias vi="vim"
 alias wh='who -uTH'
 alias xcf='find $HOME/Library -name $1' # xcode find - find console app by name
 
-# gls / exa aliases 
+# gls / eza aliases 
 eval $(gdircolors ~/.dircolors/dircolors.256dark)  # set dircolors 
-alias ls="exa"
-alias l.="exa -dF .*"
-alias ll="exa -lF $@"
+alias ls="eza"
+alias l.="eza -dF .*"
+alias ll="eza -lF $@"
 alias lll="gls -lAhF $@"
-alias lsg="exa --long --header --git"
-alias lst="exa --tree -L 2 $@"
-alias lsm="exa --sort=modified --reverse -lF"
-alias ls-by-size="exa --sort=size -l --reverse"
+alias lsg="eza --long --header --git"
+alias lst="eza --tree -L 2 $@"
+alias lsm="eza --sort=modified --reverse -lF"
+alias ls-by-size="eza --sort=size -l --reverse"
 alias fl='gls -lA | egrep "^l" || echo "No soft links"'
-alias fdc="exa --only-dirs"
+alias fdc="eza --only-dirs"
 
 # Network aliases 
 alias myip="curl -s http://ipecho.net/plain ; echo"
@@ -69,7 +69,7 @@ top10 () {
 }
 
 mkd () { mkdir -p "$@" && cd "$_" ; }       # create a new dir and enter it
-lcd () { cd "$@" ; exa  -aFl ; }              # enter dir, list contents 
+lcd () { cd "$@" ; eza  -aFl ; }              # enter dir, list contents 
 mans () { man "$@" | grep -iC2 --color=always $2 ; } # Example:  mans ls term 
 hex2dec () { printf "%d\n" "$@" ; }         # print hex (0xn) or octal (0n) as decimal
 zipf () { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
