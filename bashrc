@@ -70,7 +70,6 @@ top10 () {
 
 mkd () { mkdir -p "$@" && cd "$_" ; }       # create a new dir and enter it
 lcd () { cd "$@" ; eza  -aFl ; }              # enter dir, list contents 
-mans () { man "$@" | grep -iC2 --color=always $2 ; } # Example:  mans ls term 
 hex2dec () { printf "%d\n" "$@" ; }         # print hex (0xn) or octal (0n) as decimal
 zipf () { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
 # ff () { find . -name "$@" ; }             # unnecessary with fd(1)
