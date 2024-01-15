@@ -69,7 +69,7 @@ top10 () {
 }
 
 mkd () { mkdir -p "$@" && cd "$_" ; }       # create a new dir and enter it
-lcd () { cd "$@" ; eza  -aFl ; }              # enter dir, list contents 
+lcd () { cd "$@" ; eza  -aFl ; }            # enter dir, list contents 
 hex2dec () { printf "%d\n" "$@" ; }         # print hex (0xn) or octal (0n) as decimal
 zipf () { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
 # ff () { find . -name "$@" ; }             # unnecessary with fd(1)
@@ -87,7 +87,8 @@ alias network-name="networksetup -getairportnetwork en2 | awk -F: '{print $2}'"
 
 t () { command mv "$@" ~/.Trash ; }         # Move file(s) to macOS trash
 ql () { qlmanage -p "$*" >& /dev/null ; }   # Open file(s) in macOS Quicklook preview
-spotlight() { mdfind -name "$@" ; }         # find files with macOS spotlight metadata search
+spotlight() { mdfind -name "$@" ; }         # Find files with macOS spotlight metadata search
+view-plist () { plutil -p "$@" ; }          # View macOS .plist files 
 
 # cd(1) to the dir in active macOS Finder 
 cdf () {
