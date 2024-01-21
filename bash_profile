@@ -2,6 +2,8 @@
 
 # Use this file for globals, bashrc for locals 
 
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # Use colors with MAN pages.
+
 # Homebrew is loacted in /usr/local on Intel macs and /opt/homebrew on ARM macs 
 if [ -d "/usr/local/Caskroom" ]; then
     BREW_PATH=/usr/local
