@@ -1,5 +1,7 @@
 # ~/.bash_profile
 
+# Use this file for globals, bashrc for locals 
+
 # Homebrew is loacted in /usr/local on Intel macs and /opt/homebrew on ARM macs 
 if [ -d "/usr/local/Caskroom" ]; then
     BREW_PATH=/usr/local

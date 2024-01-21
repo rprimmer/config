@@ -1,5 +1,6 @@
 # ~/.bashrc
 
+# Locals
 HISTSIZE=300               # number of commands to save in history file  
 HISTIGNORE="?:??:&:exit"   # & says ignore duplicate cmds, ?:?? ignore 1 or 2 letter cmds
 FIGNORE=".o:~"             # ignore these on cmd line completion
@@ -31,18 +32,18 @@ alias vi="vim"
 alias wh='who -uTH'
 alias xcf='find $HOME/Library -name $1' # xcode find - find console app by name
 
-# gls / eza aliases 
+# eza aliases 
 eval $(gdircolors ~/.dircolors/dircolors.256dark)  # set dircolors 
-alias ls="eza"
-alias l.="eza -dF .*"
-alias ll="eza -lF $@"
-alias lll="gls -lAhF $@"
-alias lsg="eza --long --header --git"
-alias lst="eza --tree -L 2 $@"
-alias lsm="eza --sort=modified --reverse -lF"
-alias ls-by-size="eza --sort=size -l --reverse"
-alias fl='gls -lA | egrep "^l" || echo "No soft links"'
-alias fdc="eza --only-dirs"
+alias ls="eza --no-quotes -x $@"
+alias l.="eza -dF .* $@"
+alias ll="eza -lF --no-quotes $@"
+alias lll="eza -lAhF --no-quotes $@"
+alias lsg="eza --long --header --no-quotes --git $@"
+alias lst="eza --tree -L 2 --no-quotes $@"
+alias lsm="eza --sort=modified --reverse --no-quotes -lF $@"
+alias ls-by-size="eza --sort=size -l --reverse --no-quotes $@"
+alias fl='eza -lA | egrep "^l" || echo "No soft links"'
+alias fdc="eza --only-dirs --no-quotes -x $@"
 
 # Network aliases 
 alias myip="curl -s http://ipecho.net/plain ; echo"
@@ -113,15 +114,14 @@ ic () {
             cd ~/ic             # iCloud
    else
        case $1 in
-            c)   cd ~/ic/linux/config  ;; # config
+            c)   cd ~/Documents/linux/config  ;; # config
             k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents   ;;   # Keynote
-            l)   cd ~/ic/linux  ;;   
-            m)   cd ~/ic/Markdown  ;; 
+            l)   cd ~/Documents/linux  ;;   
             n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents   ;;   # Numbers            
             p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents    ;;   # Pages
             pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents  ;;   # Preview
             s)   cd ~/Documents/src  ;;   # sources 
-            sw)  cd ~/ic/Swift ;;           
+            sw)  cd ~/Documents/src/Swift ;;           
             ?)   echo "c - config; k - keynote; l - linux; m - markdown; n - numbers; p - pages; pr - preview; s - src" ;;
             *)   echo "'$1' invalid option" ;;
        esac
