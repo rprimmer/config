@@ -6,7 +6,6 @@ HISTIGNORE="?:??:&:exit"   # & says ignore duplicate cmds, ?:?? ignore 1 or 2 le
 FIGNORE=".o:~"             # ignore these on cmd line completion
 FCEDIT=vi                  # use vi for fc bash builtin
 EDITOR=vi 
-MANPAGER="sh -c 'col -bx | bat -l man -p'"  # Use colors with MAN pages. 
 
 # Set shell options 
 set -m                     # enable job control
