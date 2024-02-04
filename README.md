@@ -1,3 +1,7 @@
 # Config
 
-Config files (mostly dot files)
+This directory contains
+
+* Config files (mostly dot files) that are shared across systems.
+
+* Shell scripts that are associated with projects and/or system administration functions that need to happen across systems. 

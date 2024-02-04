@@ -19,5 +19,6 @@ ln -fsv ${HOME}/Documents/linux/config/ssh            .ssh
 ln -fsv ${HOME}/Documents/linux/config/vimrc          .vimrc
 ln -fsv ${HOME}/Documents/linux/config/emacs          .xemacs
 ln -fsv ${HOME}/Documents/linux/bin                   bin 
+ln -fsv ${HOME}/Documents/src/fix-hosts/fix-hostfiles.sh bin/fix-hostfiles.sh
 
 popd 

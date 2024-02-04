@@ -85,10 +85,10 @@ alias eject-disk="drutil tray eject"        # Eject CD
 alias metadata-info="mdimport -td2 $1"
 alias network-name="networksetup -getairportnetwork en2 | awk -F: '{print $2}'"
 
-t () { command mv "$@" ~/.Trash ; }         # Move file(s) to macOS trash
-ql () { qlmanage -p "$*" >& /dev/null ; }   # Open file(s) in macOS Quicklook preview
-spotlight() { mdfind -name "$@" ; }         # Find files with macOS spotlight metadata search
-view-plist () { plutil -p "$@" ; }          # View macOS .plist files 
+t () { command mv "$@" ~/.Trash ; }             # Move file(s) to macOS trash
+ql () { qlmanage -p "$*" >& /dev/null ; }       # Open file(s) in macOS Quicklook preview
+spotlight() { mdfind -name "$@" 2> /dev/null; } # Find files with macOS spotlight metadata search
+view-plist () { plutil -p "$@" ; }              # View macOS .plist files 
 
 # cd(1) to the dir in active macOS Finder 
 cdf () {
