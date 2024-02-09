@@ -12,11 +12,14 @@ set -m                     # enable job control
 set -o ignoreeof           # CTRL-D will not kill terminal session
 shopt -s cdspell           # correct minor spelling erros on cd command
 shopt -s checkjobs         # don't exit bash on first exit if running jobs exist
+shopt -s globstar          # enables **/* recursive dir access akin to zsh(1)
 
 alias b=bat
+alias batc="bat --color never"   
+alias c=cat    
 alias df="duf --hide-mp '*time*'"
 alias h='history | tail -n 30'
-alias numFiles='echo $(gls -1 | wc -l)'  # count of non-hidden files in current dir
+alias numFiles='echo $(eza -1 | wc -l)'  # count of non-hidden files in current dir
 alias make1mb='mkfile -v 1m ./1MB.dat'   # creates a file of 1mb size (all zeros)
 alias memHogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 alias path='echo -e ${PATH//:/\\n}'      # display all executabe paths
@@ -31,8 +34,10 @@ alias vi="vim"
 alias wh='who -uTH'
 alias xcf='find $HOME/Library -name $1' # xcode find - find console app by name
 
+# set dircolors 
+eval $(gdircolors ~/.dircolors/dircolors.256dark)  
+
 # eza aliases 
-eval $(gdircolors ~/.dircolors/dircolors.256dark)  # set dircolors 
 alias ls="eza --no-quotes -x $@"
 alias l.="eza -dF .* $@"
 alias ll="eza -lF --no-quotes $@"

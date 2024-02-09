@@ -1,12 +1,15 @@
 # ~/.bash_profile
 # Use this file for globals, bashrc for locals 
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # Use colors with MAN pages.
+# Use colors with man pages on my mac pro, but it's too dark on MBP
+if [[ $(uname -m) == "x86_64" ]]; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # Use colors with MAN pages
+fi
 
 # Homebrew is loacted in /usr/local on Intel macs and /opt/homebrew on ARM macs 
 if [ -d "/usr/local/Caskroom" ]; then
     BREW_PATH=/usr/local
-else
+elif [ -d "/opt/homebrew" ]; then
     BREW_PATH=/opt/homebrew
 fi
 
@@ -31,17 +34,14 @@ export PS1="\\w\\$ "
 # Uncomment below if using gls
 # export QUOTING_STYLE=literal
 
-# Uncomment to get color for {g,}ls(1)
-# export CLICOLOR=1                        # use colors for ls(1) command
-# export LSCOLORS=Exfxcxdxbxegedabagacad   # set LS colors; cf. ls(1) for details
-
-# To set colors for eza(1), cf. eza_colors(5)
-
 # set up Auto Jump for shell
 test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/profile.d/autojump.sh"
 
 # iterm2 customizations
 test -r "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# enable bash_completions package 
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # bashrc sets local environment vars and funcitons, aliases, etc
 test -r ~/.bashrc && source ~/.bashrc   
