@@ -11,7 +11,7 @@ ln -fsv ${HOME}/Documents/linux/config/bash_logout    .bash_logout
 ln -fsv ${HOME}/Documents/linux/config/bash_profile   .bash_profile 
 ln -fsv ${HOME}/Documents/linux/config/bashrc         .bashrc 
 ln -fsv ${HOME}/Documents/linux/config/dircolors      .dircolors 
-ln -fsv ${HOME}/Documents/linux/config/editreadrc     .editreadrc
+# ln -fsv ${HOME}/Documents/linux/config/editreadrc     .editreadrc
 ln -fsv ${HOME}/Documents/linux/config/emacs/init.el  .emacs 
 ln -fsv ${HOME}/Documents/linux/config/gitconfig      .gitconfig 
 ln -fsv ${HOME}/Documents/linux/config/inputrc        .inputrc
