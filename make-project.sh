@@ -26,6 +26,7 @@ cd ${PROJECT}
 
 cp ${CONFIG}/makefile-${MAKE} ./makefile
 cp ${CONFIG}/C.gitignore ./.gitignore
+cp ${CONFIG}/clang-format ./.clang-format 
 
 echo \# Project ${PROJECT} > README.md 
 
