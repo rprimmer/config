@@ -18,7 +18,7 @@ fi
 
 PROJECT=$1
 
-CONFIG=${HOME}/ic/linux/config
+CONFIG=${HOME}/Documents/linux/config
 
 mkdir -p ${PROJECT}/bin ${PROJECT}/obj ${PROJECT}/src ${PROJECT}/.vscode 
 
