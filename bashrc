@@ -61,10 +61,14 @@ alias openports='sudo lsof -i | grep LISTEN'
 alias netSpeed="networkQuality -v"
 
 # hash specific commands outside normal search list
+# Note: hashed commands are accessible via bash command complete by default
 hash -p /usr/sbin/chown chown
 hash -p /usr/sbin/init init
 hash -p /sbin/shutdown shutdown
-hash -p /Applications/Doxygen.app/Contents/Resources/doxygen doxygen
+
+# alias commands outside normal search path
+alias doxygen='/Applications/Doxygen.app/Contents/Resources/doxygen'
+alias doxywizard='/Applications/Doxygen.app/Contents/MacOS/Doxywizard'
 
 # Functions
 

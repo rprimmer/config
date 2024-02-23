@@ -25,6 +25,7 @@ mkdir -p ${PROJECT}/bin ${PROJECT}/obj ${PROJECT}/src ${PROJECT}/.vscode
 cd ${PROJECT}
 
 cp ${CONFIG}/makefile-${MAKE} ./makefile
+cp ${CONFIG}/skell.c ./src/main.c
 cp ${CONFIG}/C.gitignore ./.gitignore
 cp ${CONFIG}/clang-format ./.clang-format 
 

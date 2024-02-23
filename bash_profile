@@ -41,7 +41,7 @@ test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/pro
 test -r "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # enable bash_completions package 
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+[[ -r "${BREW_PATH}/etc/profile.d/bash_completion.sh" ]] && . "${BREW_PATH}/etc/profile.d/bash_completion.sh"
 
 # bashrc sets local environment vars and funcitons, aliases, etc
 test -r ~/.bashrc && source ~/.bashrc   
