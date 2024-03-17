@@ -1,5 +1,6 @@
+PROGRAM :=	myapp
 CC :=     	clang
-CFLAGS := 	-Wall -Wextra -g
+CFLAGS := 	-g -Wall -Wextra -DDEBUG
 BIN :=		progs
 # FILE :=		input-file
 
@@ -15,7 +16,7 @@ readme: README.md
 	pandoc README.md -o readme.pdf
 
 timing: $(BIN)
-	time ./prog $(FILE)
+	time ./$(PROGRAM) $(FILE)
 
 clean:
 	rm -rf $(BIN) *.dSYM readme.pdf
