@@ -36,4 +36,4 @@ markdown: README.md
 #	pandoc $(PROGRAM)-design-spec.md -o $(PROGRAM)-design.spec.pdf
 
 clean:
-	$(RM) -rf $(BINDIR)/* $(OBJ)/* *.dSYM readme.pdf $(PROGRAM)-design.spec.pdf $(MANPAGE)
+	$(RM) -rf $(BINDIR)/* $(OBJ)/* *.dSYM readme.pdf $(PROGRAM)-design.spec.pdf 

@@ -19,20 +19,21 @@ fi
 PROJECT=$1
 
 CONFIG=${HOME}/Documents/linux/config
+CONFIG_SRC=${CONFIG}/src
 
 mkdir -p ${PROJECT}/bin ${PROJECT}/obj ${PROJECT}/src ${PROJECT}/docs ${PROJECT}/.vscode 
 
 cd ${PROJECT}
 
-cp ${CONFIG}/makefile-${MAKE} ./makefile
-cp ${CONFIG}/main.c ./src/main.c
-cp ${CONFIG}/system-actions.c ./src/system-actions.c
-cp ${CONFIG}/system-actions.h ./src/system-actions.h
-cp ${CONFIG}/C.gitignore ./.gitignore
-cp ${CONFIG}/clang-format ./.clang-format 
+cp ${CONFIG_SRC}/makefile-${MAKE} ./makefile
+cp ${CONFIG_SRC}/main.c ./src/main.c
+cp ${CONFIG_SRC}/system-actions.c ./src/system-actions.c
+cp ${CONFIG_SRC}/system-actions.h ./src/system-actions.h
+cp ${CONFIG_SRC}/C.gitignore ./.gitignore
 
 echo \# Project ${PROJECT} > README.md 
 
-cd .vscode 
+cp ${CONFIG}/vscode/clang-format ./.clang-format
 
+cd .vscode 
 cp -r ${CONFIG}/vscode/* .
