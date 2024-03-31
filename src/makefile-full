@@ -3,7 +3,7 @@
 # make markdown -> convert markdown files
 # make docs --> create API doc
 
-PROGRAM = MyApp
+PROGRAM = foo
 CC      = clang
 CFLAGS  = -g -Wall -Wextra -DDEBUG
 LDFLAGS =
@@ -11,6 +11,7 @@ SRC     = src
 OBJ     = obj
 BINDIR  = bin
 DOCDIR  = docs
+MANDIR	= man
 SRCS    = $(wildcard $(SRC)/*.c)
 OBJS    = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 BIN     = $(BINDIR)/$(PROGRAM)
@@ -32,17 +33,20 @@ $(OBJ)/%.o: $(SRC)/%.c $(OBJ)
 .PHONY: release markdown docs clean
 
 release: CFLAGS=-Wall -Wextra -O2 -DNDEBUG
-release: clean markdown docs $(BIN)
+release: clean markdown docs manpage $(BIN)
 	@echo "Release build complete."
 
 markdown: README.md
 	$(PANDOC) README.md -o readme.pdf
 
-docs: 
+docs:
 	$(DOXYGEN) Doxyfile > makefile.out 2>&1
 	$(MAKE) -C $(DOCDIR)/latex >> makefile.out 2>&1
 	ln -sf docs/html/index.html $(PROGRAM)-apidoc.html
 	cp docs/latex/refman.pdf ./$(PROGRAM)-apidoc.pdf
+
+manpage: $(MANDIR)/foo.1.in
+	sed 's/@MAN_DATE@/$(shell date "+%B %d, %Y")/' $(MANDIR)/foo.1.in > $(MANDIR)/$(MANPAGE)
 
 clean:
 	$(RM) -rf $(BINDIR)/* $(OBJ)/* *.dSYM readme.pdf $(PROGRAM)-apidoc.*

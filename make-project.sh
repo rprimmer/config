@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Create and populate a new C project folder
-# Restrictions: at present this setup assumes macOS, either on x86 or ARM
+# Restrictions: at present this setup assumes macOS, either x86 or ARM
 
 [ $# -lt 2 ] && { echo "Usage: `basename $0` project-name light | full";  exit 1; }
 
@@ -19,15 +19,15 @@ fi
 
 PROJECT=$1
 
+mkdir -p ${PROJECT}/bin ${PROJECT}/obj ${PROJECT}/src ${PROJECT}/docs ${PROJECT}/man ${PROJECT}/.vscode 
+
 CONFIG=${HOME}/Documents/linux/config
 CONFIG_SRC=${CONFIG}/src
-
-mkdir -p ${PROJECT}/bin ${PROJECT}/obj ${PROJECT}/src ${PROJECT}/docs ${PROJECT}/.vscode 
 
 cd ${PROJECT}
 
 cp ${CONFIG_SRC}/makefile-${MAKE} ./makefile
-sed -i '' "s/PROGRAM = \(.*\)/PROGRAM = ${PROJECT}/g" makefile
+sed -i '' "s/foo/${PROJECT}/g" makefile
 
 cd src
 cp ${CONFIG_SRC}/main.c ./main.c
@@ -40,9 +40,6 @@ sed -i '' "s/foo/${PROJECT}/g" ${PROJECT}.c
 
 cd ..
 cp ${CONFIG_SRC}/C.gitignore ./.gitignore
-
-echo \# Project ${PROJECT} > README.md 
-
 cp ${CONFIG}/vscode/clang-format ./.clang-format
 
 cd .vscode 
@@ -59,3 +56,11 @@ elif [ "$chipset" = "x86_64" ] ; then
 else
     printf "Unrecognized system: %s\n" $chipset 
 fi
+
+cd ../man
+CONFIG_MAN=${CONFIG}/man
+cp ${CONFIG_MAN}/foo.1.in ./${PROJECT}.1.in
+sed -i '' "s/foo/${PROJECT}/g" ${PROJECT}.1.in
+
+cd .. 
+echo \# Project ${PROJECT} > README.md 

@@ -4,3 +4,4 @@ emacs
 ssh
 .DS_Store
 tmp
+man/fswatch.7.in

@@ -1,0 +1,66 @@
+.\"   Manpage for the foo command.
+.\"
+.Dd @MAN_DATE@
+.Dt "foo" "1" "foo very brief description for header"
+.Pp
+.Sh NAME
+.Nm foo 
+does something interesting.
+.Pp 
+.Sh SYNOPSIS
+.Nm 
+[OPTIONS] <arguments>
+.Sh DESCRIPTION
+The
+.Nm
+command does something...
+.Bl -tag indent
+.It -
+First dashed bullet.
+.It -
+Second 
+.Em emphasized
+bullet.
+.El
+.Pp
+.Sh OPTIONS
+.Bl -tag -width indent
+.It Fl h, -help
+Display help.
+.It Fl x, -some-switch
+Switch detail.
+.It Fl v, -verbose
+Print verbose output.
+.It Fl -version
+Print the version of
+.Nm
+and exits.
+.El 
+.Sh ARGUMENTS
+.Bl -tag -width indent
+.It \\fBarg1\\fR  : argument detail
+.It \\fBarg2\\fR : argument detail
+.El 
+.Sh RESTRICTIONS
+.Bl -tag -width indent
+.It restriction : restriction detail
+.It restriction : restriction detail
+.Sh EXAMPLES
+.Bl -tag -width indent
+.Nm
+: example detail
+.Pp
+.Nm
+: example detail
+.El 
+.Sh FILES
+.Bl -tag -width indent
+Executable: /usr/local/bin
+.Pp
+Manpage: /usr/local/share/man/man1
+.Sh COMPATIBILITY
+.Nm
+can be built on macOS (both ARM and Intel) and linux.
+.Sh BUGS
+See https://github.com/rprimmer/foo/issues
+for open issues or to create a new one.
