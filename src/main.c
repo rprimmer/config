@@ -9,10 +9,10 @@
 
 int main(int argc, char **argv) {
     char program[PATH_MAX];
-    basename_r(argv[0], program); // basename(3) cannot be re-used for persistent vars, cf. manpage.
+    basename_r(argv[0], program);
 
 #ifdef DEBUG
-    fprintf(stderr, "%s, %d: argc: %d, optind: %d\n", basename(__FILE__), __LINE__, argc, optind);
+    fprintf(stderr, "%s, %d: argc: %d, optind: %d\n", __FILE__, __LINE__, argc, optind);
 #endif // DEBUG
 
     // Handle switches
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     }
 
 #ifdef DEBUG
-    fprintf(stderr, "%s, %d: argc: %d, optind: %d\n", basename(__FILE__), __LINE__, argc, optind);
+    fprintf(stderr, "%s, %d: argc: %d, optind: %d\n", __FILE__, __LINE__, argc, optind);
 #endif // DEBUG
 
     // Handle arguments

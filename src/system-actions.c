@@ -22,10 +22,6 @@ int booleanQuery(const char *prompt) {
     if (fgets(response, sizeof(response), stdin) == NULL)
         HANDLE_ERROR("failed to read user response"); 
 
-    // Empty newline interpreted as non-yes answer 
-    if (response[0] == '\n')     
-        return 0;
-
     return (response[0] == 'y' || response[0] == 'Y');
 } // booleanQuery()
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 # Create and populate a new C project folder
+# Restrictions: at present this setup assumes macOS, either on x86 or ARM
 
 [ $# -lt 2 ] && { echo "Usage: `basename $0` project-name light | full";  exit 1; }
 
@@ -26,9 +27,18 @@ mkdir -p ${PROJECT}/bin ${PROJECT}/obj ${PROJECT}/src ${PROJECT}/docs ${PROJECT}
 cd ${PROJECT}
 
 cp ${CONFIG_SRC}/makefile-${MAKE} ./makefile
-cp ${CONFIG_SRC}/main.c ./src/main.c
-cp ${CONFIG_SRC}/system-actions.c ./src/system-actions.c
-cp ${CONFIG_SRC}/system-actions.h ./src/system-actions.h
+sed -i '' "s/PROGRAM = \(.*\)/PROGRAM = ${PROJECT}/g" makefile
+
+cd src
+cp ${CONFIG_SRC}/main.c ./main.c
+cp ${CONFIG_SRC}/system-actions.c ./system-actions.c
+cp ${CONFIG_SRC}/system-actions.h ./system-actions.h
+cp ${CONFIG_SRC}/foo.h ./${PROJECT}.h
+cp ${CONFIG_SRC}/foo.c ./${PROJECT}.c
+sed -i '' "s/foo/${PROJECT}/g" ${PROJECT}.h
+sed -i '' "s/foo/${PROJECT}/g" ${PROJECT}.c
+
+cd ..
 cp ${CONFIG_SRC}/C.gitignore ./.gitignore
 
 echo \# Project ${PROJECT} > README.md 
@@ -36,4 +46,16 @@ echo \# Project ${PROJECT} > README.md
 cp ${CONFIG}/vscode/clang-format ./.clang-format
 
 cd .vscode 
-cp -r ${CONFIG}/vscode/* .
+cp -r ${CONFIG}/vscode/*.json .
+sed -i '' "s/foo/${PROJECT}/g" launch.json
+sed -i '' "s/foo/${PROJECT}/g" settings.json
+sed -i '' "s/foo/${PROJECT}/g" tasks.json
+
+chipset=`uname -m`
+if [ "$chipset" = "arm64" ] ; then
+    sed -i '' "s/foo/macos-clang-arm64/g" c_cpp_properties.json
+elif [ "$chipset" = "x86_64" ] ; then
+    sed -i '' "s/foo/macos-clang-x64/g" c_cpp_properties.json
+else
+    printf "Unrecognized system: %s\n" $chipset 
+fi
