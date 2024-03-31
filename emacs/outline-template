@@ -1,0 +1,17 @@
+;; -*- mode: outline; -*-
+
+* 1st level heading
+- C-c C-d :  hide all under this heading
+- C-c C-s : show all under this heading
+
+** 2nd level heading
+- C-c C-n : move point to next heading
+- C-c C-p : move point to previous heading
+
+*** Third level heading
+- 3rd level text
+
+
+* Next 1st level heading
+- C-c C-t : Hide all headings
+- C-c C-a : Show all headings

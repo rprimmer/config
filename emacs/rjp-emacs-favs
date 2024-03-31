@@ -1,0 +1,55 @@
+;; -*- mode: outline; -*-
+
+Emacs Cheat Sheet
+
+* Motion
+M-< | M->	 : go to beginning / end of buffer
+M-{ 	| M-}	 : go to beginning / end of paragraph
+
+* Marking
+C-SPC		: set mark here
+C-x C-x		: exchange point and mark
+
+* Bookmarks
+C-x r m		: set bookmark
+C-x r b		: jump to bookmark
+
+* Registers
+C-x r <spc> p : save point to register "p"
+C-x r j p	       : jump to point stored in register "p"
+C-x r s p	       : copy region to register "p"
+C-x r i p	       : insert from point "p"
+M-x view-register
+
+* Outline mode
+To enable, set first line to be:  ;; -*- mode: outline; -*-
+C-c C-d	       : hide all under this heading
+C-c C-s 	       : show all under this heading
+C-c C-n 	       : move point to next heading
+C-c C-p 	       : move point to previous heading
+C-c C-t 	       : hide all headings
+C-c C-a 	       : show all headings
+
+* Windows
+C-x o		: switch to other window
+C-x 0		: delete this window
+C-x 1		: delete all other windows
+C-x 2		: split window above and below point
+C-x 3		: split widow side-by-side
+C-x 4 f	  	: find file in other window
+C-x 4 d		: run dired in other window
+
+* Abbreviations
+M-x define-global-abbrev
+
+* Formatting
+C-o			: insert newline after point
+C-x C-o		: delete blank lines around point
+M-q		  	: fill paragraph
+C-M-\		: indent region (mode dependent)
+
+* Misc
+C-x 4 a		: new changelog entry
+C-x a l	        : add local abbrv for word before point
+C-x a g		: add global abbrev for word before point
+M-x ispell region | buffer  : ispell region / buffer
