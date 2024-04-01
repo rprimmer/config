@@ -14,7 +14,7 @@ elif [ -d "/opt/homebrew" ]; then
 fi
 
 # Set PATH and environment vars for homebrew (cf. man brew)
-eval "$(${BREW_PATH}/bin/brew shellenv)"
+eval "$("${BREW_PATH}"/bin/brew shellenv)"
 
 # Use brew version of bash, Apple's version is ancient
 export BASH=${BREW_PATH}/bin/bash   

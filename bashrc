@@ -113,23 +113,23 @@ cdf () {
 EOT
     )
     echo "cd to \"$currFolderPath\""
-    cd "$currFolderPath"
+    cd "$currFolderPath" || exit
 }
 
 # ic:  cd(1) to the needlessly complicated iCloud directory paths
 ic () {
    if [ -z $1 ]  ;  then
-            cd ~/ic             # iCloud
+            cd ~/ic || exit             # iCloud
    else
        case $1 in
-            c)   cd ~/Documents/linux/config  ;; # config
-            k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents   ;;   # Keynote
-            l)   cd ~/Documents/linux  ;;   
-            n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents   ;;   # Numbers            
-            p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents    ;;   # Pages
-            pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents  ;;   # Preview
-            s)   cd ~/Documents/src  ;;   # sources 
-            sw)  cd ~/Documents/src/Swift ;;           
+            c)   cd ~/Documents/linux/config || exit  ;; # config
+            k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents || exit   ;;   # Keynote
+            l)   cd ~/Documents/linux || exit  ;;   
+            n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents || exit   ;;   # Numbers            
+            p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents || exit    ;;   # Pages
+            pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents || exit  ;;   # Preview
+            s)   cd ~/Documents/src || exit  ;;   # sources 
+            sw)  cd ~/Documents/src/Swift || exit ;;           
             ?)   echo "c - config; k - keynote; l - linux; m - markdown; n - numbers; p - pages; pr - preview; s - src" ;;
             *)   echo "'$1' invalid option" ;;
        esac
