@@ -218,7 +218,7 @@ int fileInfo(const char *filepath) {
     return EXIT_SUCCESS; 
 } // fileInfo()
 
-int checkProcess(const char *process_name) {
+int checkProcess(const char *process_name, bool display_pids) {
     char command[128];
     snprintf(command, sizeof(command), "pgrep %s", process_name);
 
@@ -229,9 +229,17 @@ int checkProcess(const char *process_name) {
     }
 
     char buffer[256];
-    if (fgets(buffer, sizeof(buffer), pipe) == NULL)
+    if (fgets(buffer, sizeof(buffer), pipe) == NULL) {
+        if (!display_pids) {
+            pclose(pipe);
+            return EXIT_FAILURE;
+        }
         fprintf(stderr, "Warning: the %s process is not running.\n", process_name);
-    else {
+    } else {
+        if (!display_pids) {
+            pclose(pipe);
+            return EXIT_SUCCESS;
+        }
         pid_t pid = atoi(strtok(buffer, "\n")); // Extract first PID
         printf("The %s process is running with PID(s): %d", process_name, pid);
 
