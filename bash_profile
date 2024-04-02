@@ -11,14 +11,17 @@ if [ -d "/usr/local/Caskroom" ]; then
     BREW_PATH=/usr/local
 elif [ -d "/opt/homebrew" ]; then
     BREW_PATH=/opt/homebrew
+else
+    echo "Homebrew is essential but not found. Please install Homebrew."
 fi
 
-# Set PATH and environment vars for homebrew (cf. man brew)
-eval "$("${BREW_PATH}"/bin/brew shellenv)"
-
-# Use brew version of bash, Apple's version is ancient
-export BASH=${BREW_PATH}/bin/bash   
-export SHELL=${BREW_PATH}/bin/bash  
+if [ -n "$BREW_PATH" ]; then
+  eval "$("${BREW_PATH}"/bin/brew shellenv)"
+  # Use brew version of bash, Apple's version is ancient
+  export BASH=${BREW_PATH}/bin/bash   
+  export SHELL=${BREW_PATH}/bin/bash  
+  export PATH="$BREW_PATH:$PATH"
+fi
 
 # My bin should always come first in the path
 export PATH="~/bin:${PATH}" 
@@ -41,7 +44,7 @@ test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/pro
 test -r "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # enable bash_completions package 
-[[ -r "${BREW_PATH}/etc/profile.d/bash_completion.sh" ]] && . "${BREW_PATH}/etc/profile.d/bash_completion.sh"
+test -r "${BREW_PATH}/etc/profile.d/bash_completion.sh"  && source "${BREW_PATH}/etc/profile.d/bash_completion.sh"
 
 # bashrc sets local environment vars and funcitons, aliases, etc
 test -r ~/.bashrc && source ~/.bashrc   
