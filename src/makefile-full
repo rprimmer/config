@@ -48,17 +48,20 @@ release: clean markdown docs manpage $(BIN)
 
 markdown: README.md
 ifndef PANDOC
-	$(error "Pandoc is not available. Please install it to convert markdown files.")
+	$(error "pandoc(1) not found.")
 endif
 	@$(PANDOC) README.md -o readme.pdf
 
 $(DOCDIR):
+ifndef DOXYGEN
+	$(error "doxygen(1) not found.")
+endif
 	$(DOXYGEN) Doxyfile > makefile.out 2>&1
 	$(MAKE) -C $(DOCDIR)/latex >> makefile.out 2>&1
 	ln -sf docs/html/index.html $(PROGRAM)-apidoc.html
 	cp docs/latex/refman.pdf ./$(PROGRAM)-apidoc.pdf
 
-manpage: $(MANDIR)/foo.1.in
+manpage:
 	sed 's/@MAN_DATE@/$(shell date "+%B %d, %Y")/' $(MANDIR)/$(PROGRAM).1.in > $(MANDIR)/$(MANPAGE)
 
 clean:
@@ -66,8 +69,7 @@ clean:
 
 install:
 ifndef INSTALL
-	$(error "Error: install(1) not found.")
-else
+	$(error "install(1) not found.")
+endif
 	$(INSTALL) $(INSTALL_ARGS) $(PROGRAM) $(INSTALL_DIR)
 	@echo "Installation successful, $(INSTALL_DIR)/$(PROGRAM) can be used"
-endif
