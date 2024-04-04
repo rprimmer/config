@@ -1,6 +1,8 @@
+// foo.h
 
 #pragma once 
 
+#include "system-actions.h"
 
 /**
  * @brief Display help to user

@@ -1,9 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Create and populate a new C project folder
-# Restrictions: at present this setup assumes macOS, either x86 or ARM
+# Restrictions: this setup assumes macOS, either x86 or ARM
 
-# shellcheck disable=SC3040
 set -euo pipefail
 
 [ $# -lt 2 ] && { echo "Usage: $(basename "$0") project-name light | full";  exit 1; }
@@ -29,11 +28,12 @@ CONFIG_SRC=${CONFIG}/src
 
 cd "${PROJECT}" || exit
 
-cp "${CONFIG_SRC}"/makefile-"${MAKE}" ./makefile
-sed -i '' "s/foo/${PROJECT}/g" makefile
+cp "${CONFIG_SRC}"/makefile-"${MAKE}" ./GNUmakefile
+sed -i '' "s/foo/${PROJECT}/g" GNUmakefile
 
 cd src || exit
 cp "${CONFIG_SRC}"/main.c ./main.c
+sed -i '' "s/foo/${PROJECT}/g" main.c
 cp "${CONFIG_SRC}"/system-actions.c ./system-actions.c
 cp "${CONFIG_SRC}"/system-actions.h ./system-actions.h
 cp "${CONFIG_SRC}"/foo.h ./"${PROJECT}".h
@@ -41,7 +41,7 @@ cp "${CONFIG_SRC}"/foo.c ./"${PROJECT}".c
 sed -i '' "s/foo/${PROJECT}/g" "${PROJECT}".h
 sed -i '' "s/foo/${PROJECT}/g" "${PROJECT}".c
 
-cd ..
+cd .. || exit
 cp "${CONFIG_SRC}"/C.gitignore ./.gitignore
 cp "${CONFIG}"/vscode/clang-format ./.clang-format
 
@@ -67,3 +67,4 @@ sed -i '' "s/foo/${PROJECT}/g" "${PROJECT}".1.in
 
 cd .. || exit 
 echo \# Project "${PROJECT}" > README.md 
+

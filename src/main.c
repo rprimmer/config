@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 #include "system-actions.h"
+#include "foo.h"
 
 int main(int argc, char **argv) {
     char program[PATH_MAX];

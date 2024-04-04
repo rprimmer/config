@@ -8,6 +8,7 @@ alias df="duf --hide-mp '*time*'"
 alias h='history | tail -n 30'
 alias numFiles='echo $(eza -1 | wc -l)'  # count of non-hidden files in current dir
 alias make1mb='mkfile -v 1m ./1MB.dat'   # creates a file of 1mb size (all zeros)
+alias make='gmake'
 alias memHogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 alias path='echo -e ${PATH//:/\\n}'      # display all executabe paths
 alias pp="popd"

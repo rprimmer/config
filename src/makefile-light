@@ -1,4 +1,4 @@
-PROGRAM :=	myapp
+PROGRAM :=	foo
 CC :=     	clang
 CFLAGS := 	-g -Wall -Wextra -DDEBUG
 BIN :=		progs
