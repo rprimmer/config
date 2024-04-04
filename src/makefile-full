@@ -9,7 +9,7 @@ $(error This makefile expects GNU Make.)
 endif
 
 PROGRAM 		:= foo
-INSTALL_DIR     := /usr/local/bin/
+INSTALL_DIR		:= /usr/local/bin/
 INSTALL_ARGS	:= -m 755
 CC      		:= clang
 CFLAGS			:= -g -Wall -Wextra -DDEBUG $(INCLUDES)

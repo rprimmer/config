@@ -1,5 +1,13 @@
 {
+    "[makefile]": {
+        "editor.insertSpaces": false,
+        "editor.tabSize": 4,
+        "files.trimTrailingWhitespace": true
+    },
+
     "cSpell.words": [
-        "Barg"
+        "apidoc",
+        "Doxygen",
+        "foo"
     ]
 }
