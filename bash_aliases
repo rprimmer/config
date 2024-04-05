@@ -45,10 +45,6 @@ alias ipinfoen0='ipconfig getpacket en0'              # info on connections to e
 alias openports='sudo lsof -i | grep LISTEN'
 alias netSpeed="networkQuality -v"
 
-# alias commands outside normal search path that aren't hashed in ~/.bashrc
-alias doxygen='/Applications/Doxygen.app/Contents/Resources/doxygen'
-alias doxywizard='/Applications/Doxygen.app/Contents/MacOS/Doxywizard'
-
 # macOS specific 
 alias clipboard-to-stdout="/usr/bin/pbpaste | textutil -convert txt -stdin -stdout -encoding UTF-8 ; echo"
 alias finder='open -a Finder ./'            # Open currect dir in macOS Finder

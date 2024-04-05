@@ -27,7 +27,7 @@ BIN     		= $(BINDIR)/$(PROGRAM)
 MANPAGE 		= $(PROGRAM).1
 PANDOC			:= $(shell command -v pandoc)
 INSTALL			:= $(shell command -v install)
-DOXYGEN 		:= /Applications/Doxygen.app/Contents/Resources/doxygen
+DOXYGEN 		:= $(shell command -v doxygen)
 
 all: $(BINDIR) $(BIN)
 
@@ -42,7 +42,7 @@ $(OBJ)/%.o: $(SRC)/%.c $(OBJ)
 
 .PHONY: release markdown docs clean install manpage
 
-release: CFLAGS=-Wall -Wextra -O2 -DNDEBUG $(INCLUDES)
+release: CFLAGS := -Wall -Wextra -O2 -DNDEBUG $(INCLUDES)
 release: clean markdown docs manpage $(BIN)
 	@echo "Release build complete."
 
