@@ -1,9 +1,3 @@
-# make bin -> create project directory structre
-# make release -> make final version for release
-# make markdown -> convert markdown files
-# make docs --> create API doc
-# make install --> install executable
-
 ifndef MAKE_VERSION
 $(error This makefile expects GNU Make.)
 endif
@@ -16,15 +10,15 @@ CFLAGS			:= -g -Wall -Wextra -DDEBUG $(INCLUDES)
 LDFLAGS			?=
 INCLUDES		?=
 LIBS			?=
-SRC     		:= src
-OBJ     		:= obj
-BINDIR  		:= bin
+SRCDIR     		:= src
+OBJDIR     		:= obj
 DOCDIR  		:= docs
 MANDIR			:= man
-SRCS    		= $(wildcard $(SRC)/*.c)
-OBJS    		= $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
-BIN     		= $(BINDIR)/$(PROGRAM)
-MANPAGE 		= $(PROGRAM).1
+BINDIR  		:= bin
+BIN     		:= $(BINDIR)/$(PROGRAM)
+SRCS    		= $(wildcard $(SRCDIR)/*.c)
+OBJS    		= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+MANPAGE 		:= $(PROGRAM).1
 PANDOC			:= $(shell command -v pandoc)
 INSTALL			:= $(shell command -v install)
 DOXYGEN 		:= $(shell command -v doxygen)
@@ -32,15 +26,24 @@ DOXYGEN 		:= $(shell command -v doxygen)
 all: $(BINDIR) $(BIN)
 
 $(BINDIR):
-	mkdir -p $(SRC) $(OBJ) $(BINDIR) $(DOCDIR)
+	mkdir -p $(SRCDIR) $(OBJDIR) $(BINDIR) $(DOCDIR) $(MANDIR)
 
-$(BIN): $(OBJS) $(OBJ) $(BINDIR)
+$(BIN): $(OBJS)| $(OBJDIR) $(BINDIR)
 	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS)
 
-$(OBJ)/%.o: $(SRC)/%.c $(OBJ)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY: release markdown docs clean install manpage
+.PHONY: release markdown docs clean install manpage help
+
+help:
+	@echo "make --> creates debug version"
+	@echo "make bin --> create project directory structure"
+	@echo "make release --> create final version for release"
+	@echo "make markdown --> convert markdown files"
+	@echo "make docs --> create API doc"
+	@echo "make install --> install executable"
+	@echo "make help --> display this help text"
 
 release: CFLAGS := -Wall -Wextra -O2 -DNDEBUG $(INCLUDES)
 release: clean markdown docs manpage $(BIN)
@@ -52,7 +55,7 @@ ifndef PANDOC
 endif
 	@$(PANDOC) README.md -o readme.pdf
 
-$(DOCDIR):
+docs:
 ifndef DOXYGEN
 	$(error "doxygen(1) not found.")
 endif
@@ -65,11 +68,21 @@ manpage:
 	sed 's/@MAN_DATE@/$(shell date "+%B %d, %Y")/' $(MANDIR)/$(PROGRAM).1.in > $(MANDIR)/$(MANPAGE)
 
 clean:
-	$(RM) -rf $(BINDIR)/* $(OBJ)/* *.dSYM readme.pdf $(PROGRAM)-apidoc.*
+	# run rm in a way that doesn't try to "rm -rf /*" if I forgot to assign a variable
+	@if [ -z "$(BINDIR)" ] || [ -z "$(OBJDIR)" ]; then \
+		echo "Error: BINDIR or OBJDIR is unset or empty; clean operation aborted to prevent potential harm."; \
+		exit 1; \
+	fi
+	@echo "Removing objects and binaries..."
+	@find ./$(BINDIR) -type f -exec rm -f {} +
+	@find ./$(OBJDIR) -type f -exec rm -f {} +
+	@rm -rf *.dSYM
+	@rm -f readme.pdf $(PROGRAM)-apidoc.*
+	@echo "Clean operation completed safely."
 
 install:
 ifndef INSTALL
 	$(error "install(1) not found.")
 endif
 	$(INSTALL) $(INSTALL_ARGS) $(PROGRAM) $(INSTALL_DIR)
-	@echo "Installation successful, $(INSTALL_DIR)/$(PROGRAM) can be used"
+	@echo "Installation successful. $(INSTALL_DIR)/$(PROGRAM) can be used"
