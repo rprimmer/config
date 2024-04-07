@@ -37,12 +37,14 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 .PHONY: release markdown docs clean install manpage help
 
 help:
-	@echo "make --> creates debug version"
 	@echo "make bin --> create project directory structure"
+	@echo "make --> create debug version"
 	@echo "make release --> create final version for release"
 	@echo "make markdown --> convert markdown files"
+	@echo "make manpage --> create manpage"
 	@echo "make docs --> create API doc"
 	@echo "make install --> install executable"
+	@echo "make clean --> removed unneeded files"
 	@echo "make help --> display this help text"
 
 release: CFLAGS := -Wall -Wextra -O2 -DNDEBUG $(INCLUDES)
