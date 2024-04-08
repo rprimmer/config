@@ -86,5 +86,5 @@ install:
 ifndef INSTALL
 	$(error "install(1) not found.")
 endif
-	$(INSTALL) $(INSTALL_ARGS) $(PROGRAM) $(INSTALL_DIR)
-	@echo "Installation successful. $(INSTALL_DIR)/$(PROGRAM) can be used"
+	$(INSTALL) $(INSTALL_ARGS) $(BINDIR)/$(PROGRAM) $(INSTALL_DIR)
+	@echo "Installation successful. $(INSTALL_DIR)$(PROGRAM) can be used"
