@@ -53,3 +53,4 @@ alias marktext="/Applications/MarkText.app/Contents/MacOS/MarkText"
 alias eject-disk="drutil tray eject"        # Eject CD
 alias metadata-info="mdimport -td2 $1"
 alias network-name="networksetup -getairportnetwork en2 | awk -F: '{print $2}'"
+alias allow-program-to-run="xattr -rc $@"

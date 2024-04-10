@@ -2,7 +2,7 @@ ifndef MAKE_VERSION
 $(error This makefile expects GNU Make.)
 endif
 
-PROGRAM 		:= foo
+PROGRAM			:= foo
 INSTALL_DIR		:= /usr/local/bin/
 INSTALL_ARGS	:= -m 755
 CC      		:= clang
@@ -70,7 +70,6 @@ manpage:
 	sed 's/@MAN_DATE@/$(shell date "+%B %d, %Y")/' $(MANDIR)/$(PROGRAM).1.in > $(MANDIR)/$(MANPAGE)
 
 clean:
-	# run rm in a way that doesn't try to "rm -rf /*" if I forgot to assign a variable
 	@if [ -z "$(BINDIR)" ] || [ -z "$(OBJDIR)" ]; then \
 		echo "Error: BINDIR or OBJDIR is unset or empty; clean operation aborted to prevent potential harm."; \
 		exit 1; \

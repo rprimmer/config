@@ -13,6 +13,8 @@ int main(int argc, char **argv) {
     basename_r(argv[0], program);
 
 #ifdef DEBUG
+    setbuf(stdout, NULL); 
+    setbuf(stderr, NULL);
     fprintf(stderr, "%s, %d: argc: %d, optind: %d\n", __FILE__, __LINE__, argc, optind);
 #endif // DEBUG
 
@@ -29,10 +31,10 @@ int main(int argc, char **argv) {
             usage(program);
             break;
         case 'f':
-            // insert code
+            // code
             break;
         case 'a':
-            // insert code 
+            // code 
             break;
         default:
             HANDLE_ERROR("invalid switch provided"); 
@@ -48,5 +50,5 @@ int main(int argc, char **argv) {
     // Handle actions
     int retval = 1;
 
-    return retval;
+    return ferror(stdout) ? EOF : retval;
 } 

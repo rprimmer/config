@@ -13,10 +13,11 @@ highlight SpellLocal cterm=underline
 highlight SpellLocal gui=undercurl
 set nocompatible                " don't try to be compatible with vi
 filetype plugin on              " allow ftp 
-set expandtab                   " convert tabs to spaces
 "set smarttab                   " tabs are used for indentation only (requires ctab package)
-set softtabstop=4               " set tab stop width
-set shiftwidth=4                " set number of charcaters for indentation
+set noexpandtab       " Do not convert tabs to spaces
+set tabstop=4         " A tab is 4 spaces wide
+set shiftwidth=4      " Indenting is also 4 spaces
+set softtabstop=0     " Use the same value as tabstop for backspace compatibility
 set autoindent                  " copies indentation from previous line
 set smartindent                 " automatically inserts a level of indentation in some cases
 set cindent                     " special intentation for C/C++ code
