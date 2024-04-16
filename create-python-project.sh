@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# set -x  # enable this for bash debugging
-
 # Create and populate a new Python project folder
 # Restrictions: 
 #   This setup assumes macOS, either x86 or ARM
 #   This script needs to be sourced to retain the instantiated Python virtual enviornment
 
 # Since this script is sourced, it's harder to debug, so adding logging
+
+# set -x  # enable this for bash debugging
 
 PROJECT="$1"
 LOG_FILE="$(pwd)/${PROJECT}.log"
