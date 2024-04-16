@@ -24,7 +24,9 @@ ln -fsv "${HOME}"/Documents/linux/config/ssh            .ssh
 ln -fsv "${HOME}"/Documents/linux/config/vimrc          .vimrc
 ln -fsv "${HOME}"/Documents/linux/config/emacs          .xemacs
 ln -fsv "${HOME}"/Documents/linux/bin                   bin 
-ln -fsv "${HOME}"/Documents/src/fix-hosts/fix-hostfiles.sh bin/fix-hostfiles.sh
+ln -fsv "${HOME}"/Documents/linux/config/create-python-project.sh ~/bin/.
+ln -fsv "${HOME}"/Documents/linux/config/create-c-project.sh ~/bin/.
+
 
 # shellcheck disable=SC3044
 popd || exit 

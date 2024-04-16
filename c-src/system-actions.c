@@ -3,7 +3,7 @@
 #include "system-actions.h"
 
 void handleError(bool fatal, char *file, const char *func, int line, const char *fmt, ...) {
-    fprintf(stderr, "Error in %s:%s, line %d: ", basename(file), func, line);
+    fprintf(stderr, "%s:%s, line %d: ", basename(file), func, line);
     va_list args;
     va_start(args, fmt);
     vfprintf(stderr, fmt, args);

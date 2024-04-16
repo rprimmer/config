@@ -1,13 +1,14 @@
 # ~/.bashrc
 
 # Locals
-HISTSIZE=300               # number of commands to save in history file  
-HISTIGNORE="?:??:&:exit"   # & says ignore duplicate cmds, ?:?? ignore 1 or 2 letter cmds
+HISTSIZE=25000             # number of commands to save in history file  
+#HISTIGNORE="?:??:&:exit"   # & says ignore duplicate cmds, ?:?? ignore 1 or 2 letter cmds
+HISTIGNORE="l?:&:exit"     # ingore l?, & says ignore duplicate cmds
 FIGNORE=".o:~"             # ignore these on cmd line completion
 FCEDIT=vi                  # use vi for fc bash builtin
 EDITOR=vi 
 
-# Set shell options 
+# Shell options 
 set -m                     # enable job control
 set -o ignoreeof           # CTRL-D will not kill terminal session
 shopt -s cdspell           # correct minor spelling erros on cd command
@@ -22,6 +23,13 @@ eval $(gdircolors ~/.dircolors/dircolors.256dark)
 hash -p /usr/sbin/chown chown
 hash -p /usr/sbin/init init
 hash -p /sbin/shutdown shutdown
+
+# Set up his(1)
+preprompt() {
+    his --add -- "$(history 1)"
+}
+export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S %z] "
+PROMPT_COMMAND=preprompt
 
 # Generic functions
 
@@ -45,7 +53,7 @@ ql () { qlmanage -p "$*" >& /dev/null ; }       # Open file(s) in macOS Quickloo
 sl() { mdfind -name "$@" 2> /dev/null; }        # Find files with macOS spotlight metadata search
 view-plist () { plutil -p "$@" ; }              # View macOS .plist files 
 
-# cd(1) to the dir in active macOS Finder 
+# cd to the dir in active macOS Finder tab
 cdf () {
     currFolderPath=$( /usr/bin/osascript <<EOT
         tell application "Finder"

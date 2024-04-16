@@ -1,0 +1,10 @@
+# Python packages when creating a virtual envionment
+
+# Format examples 
+# requests==2.28.1  # Specific version
+# beautifulsoup4  # Installs the latest compatible version
+# numpy >= 1.23.0  # Installs any version at or above 1.23.0
+# django  # Flexible, but might get a very new version 
+
+# black       # code formatter
+# ipython     # improved Python shell

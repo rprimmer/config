@@ -34,7 +34,7 @@ $(BIN): $(OBJS)| $(OBJDIR) $(BINDIR)
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY: release markdown docs clean install manpage help
+.PHONY: release markdown docs clean install manpage help changelog
 
 help:
 	@echo "make bin --> create project directory structure"
@@ -48,7 +48,7 @@ help:
 	@echo "make help --> display this help text"
 
 release: CFLAGS := -Wall -Wextra -O2 -DNDEBUG $(INCLUDES)
-release: clean markdown docs manpage $(BIN)
+release: clean markdown docs manpage changelog $(BIN)
 	@echo "Release build complete."
 
 markdown: README.md
@@ -87,3 +87,6 @@ ifndef INSTALL
 endif
 	$(INSTALL) $(INSTALL_ARGS) $(BINDIR)/$(PROGRAM) $(INSTALL_DIR)
 	@echo "Installation successful. $(INSTALL_DIR)$(PROGRAM) can be used"
+
+changelog:
+	@git log --oneline --decorate > ChangeLog

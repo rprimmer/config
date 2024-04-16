@@ -24,7 +24,7 @@ PROJECT=$1
 mkdir -p "${PROJECT}"/bin "${PROJECT}"/obj "${PROJECT}"/src "${PROJECT}"/docs "${PROJECT}"/man "${PROJECT}"/.vscode 
 
 CONFIG=${HOME}/Documents/linux/config
-CONFIG_SRC=${CONFIG}/src
+CONFIG_SRC=${CONFIG}/c-src
 
 cd "${PROJECT}" || exit
 
