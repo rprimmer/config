@@ -54,4 +54,7 @@ dkms.conf
 # macOS
 .DS_Store
 
+# Python specific
+venv
+
 # Project specific

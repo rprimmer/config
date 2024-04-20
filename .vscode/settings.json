@@ -7,7 +7,10 @@
 
     "cSpell.words": [
         "apidoc",
+        "argparse",
         "Doxygen",
-        "foo"
+        "foo",
+        "pathex",
+        "venv"
     ]
 }

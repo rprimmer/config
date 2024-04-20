@@ -34,24 +34,25 @@ PROMPT_COMMAND=preprompt
 # Generic functions
 
 # display the top 10 commands in history buffer 
-top10 () {
+top10() {
    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
-mkd () { mkdir -p "$@" && cd "$_" ; }       # create a new dir and enter it
-lcd () { cd "$@" ; eza  -aFl ; }            # enter dir, list contents 
-hex2dec () { printf "%d\n" "$@" ; }         # print hex (0xn) or octal (0n) as decimal
-zipf () { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
+mkd() { mkdir -p "$@" && cd "$_" ; }       # create a new dir and enter it
+lcd() { cd "$@" ; eza  -aFl ; }            # enter dir, list contents 
+hex2dec() { printf "%d\n" "$@" ; }         # print hex (0xn) or octal (0n) as decimal
+zipf() { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
 # ff () { find . -name "$@" ; }             # unnecessary with fd(1)
-dup () { cp "$1" "$1-COPY" ; }              # duplicate a file
-tab2sp () { sed -i '' $'s/\t/    /g' $(find . -name "$1") ; }  #convert tabs to 4 spaces
+dup() { cp "$1" "$1-COPY" ; }              # duplicate a file
+tab2sp() { sed -i '' $'s/\t/    /g' $(find . -name "$1") ; }  #convert tabs to 4 spaces
+rl() { local path=$(which "$1") ; readlink -f "$path" ; } # show symlink path
 
 # macOS-specific functions
 
-t () { command mv "$@" ~/.Trash ; }             # Move file(s) to macOS trash
-ql () { qlmanage -p "$*" >& /dev/null ; }       # Open file(s) in macOS Quicklook preview
+t() { command mv "$@" ~/.Trash ; }             # Move file(s) to macOS trash
+ql() { qlmanage -p "$*" >& /dev/null ; }       # Open file(s) in macOS Quicklook preview
 sl() { mdfind -name "$@" 2> /dev/null; }        # Find files with macOS spotlight metadata search
-view-plist () { plutil -p "$@" ; }              # View macOS .plist files 
+view-plist() { plutil -p "$@" ; }              # View macOS .plist files 
 
 # cd to the dir in active macOS Finder tab
 cdf () {
@@ -76,13 +77,14 @@ ic () {
             cd ~/ic || exit             # iCloud
    else
        case $1 in
-            c)   cd ~/Documents/linux/config || exit  ;; # config
-            k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents || exit   ;;   # Keynote
+            c)   cd ~/Documents/linux/config || exit  ;; 
+            k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents || exit   ;; 
             l)   cd ~/Documents/linux || exit  ;;   
-            n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents || exit   ;;   # Numbers            
-            p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents || exit    ;;   # Pages
-            pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents || exit  ;;   # Preview
-            s)   cd ~/Documents/src || exit  ;;   # sources 
+            n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents || exit   ;; 
+            p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents || exit    ;; 
+            pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents || exit  ;; 
+            py)  cd ~/Documents/src/python || exit  ;; 
+            s)   cd ~/Documents/src || exit  ;;   
             sw)  cd ~/Documents/src/Swift || exit ;;           
             ?)   echo "c - config; k - keynote; l - linux; m - markdown; n - numbers; p - pages; pr - preview; s - src" ;;
             *)   echo "'$1' invalid option" ;;
@@ -90,7 +92,6 @@ ic () {
     fi
 }
 
-# Bring in aliases
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
