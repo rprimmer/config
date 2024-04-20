@@ -22,6 +22,7 @@ MANPAGE 		:= $(PROGRAM).1
 PANDOC			:= $(shell command -v pandoc)
 INSTALL			:= $(shell command -v install)
 DOXYGEN 		:= $(shell command -v doxygen)
+CHANGELOG       := ChangeLog
 
 all: $(BINDIR) $(BIN)
 
@@ -67,7 +68,7 @@ endif
 	cp docs/latex/refman.pdf ./$(PROGRAM)-apidoc.pdf
 
 manpage:
-	sed 's/@MAN_DATE@/$(shell date "+%B %d, %Y")/' $(MANDIR)/$(PROGRAM).1.in > $(MANDIR)/$(MANPAGE)
+	sed 's/@MAN_DATE@/$(shell date "+%B %d, %Y")/' $(MANDIR)/$(PROGRAM).manpage > $(MANDIR)/$(MANPAGE)
 
 clean:
 	@if [ -z "$(BINDIR)" ] || [ -z "$(OBJDIR)" ]; then \
@@ -89,4 +90,4 @@ endif
 	@echo "Installation successful. $(INSTALL_DIR)$(PROGRAM) can be used"
 
 changelog:
-	@git log --oneline --decorate > ChangeLog
+	@git log --pretty=format:"%h %d %ad - %s" > $(CHANGELOG)

@@ -74,19 +74,20 @@ EOT
 # cd(1) to the needlessly complicated iCloud directory paths
 ic () {
    if [ -z $1 ]  ;  then
-            cd ~/ic || exit             # iCloud
+        cd ~/ic || exit             # CloudDocs
    else
        case $1 in
             c)   cd ~/Documents/linux/config || exit  ;; 
             k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents || exit   ;; 
             l)   cd ~/Documents/linux || exit  ;;   
             n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents || exit   ;; 
+            o)   cd ~/Library/Mobile\ Documents/iCloud~md~obsidian || exit ;;
             p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents || exit    ;; 
             pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents || exit  ;; 
             py)  cd ~/Documents/src/python || exit  ;; 
             s)   cd ~/Documents/src || exit  ;;   
             sw)  cd ~/Documents/src/Swift || exit ;;           
-            ?)   echo "c - config; k - keynote; l - linux; m - markdown; n - numbers; p - pages; pr - preview; s - src" ;;
+            ?)   echo "c - config; k - keynote; l - linux; n - numbers; o - obsidian; p - pages; pr - preview; py - python; s - src; sw - swift" ;;
             *)   echo "'$1' invalid option" ;;
        esac
     fi
