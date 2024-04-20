@@ -81,7 +81,7 @@ ic () {
             k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents || exit   ;; 
             l)   cd ~/Documents/linux || exit  ;;   
             n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents || exit   ;; 
-            o)   cd ~/Library/Mobile\ Documents/iCloud~md~obsidian || exit ;;
+            o)   cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian_Main || exit ;;
             p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents || exit    ;; 
             pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents || exit  ;; 
             py)  cd ~/Documents/src/python || exit  ;; 
