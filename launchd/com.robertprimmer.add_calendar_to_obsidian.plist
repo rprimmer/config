@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.robertprimmer.add_calendar_to_obsidian</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/sh</string>
+      <string>/Users/robertprimmer/Documents/src/obsidian/add_calendar_to_obsidian.sh</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>13</integer>
+      <key>Minute</key>
+      <integer>24</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/robertprimmer/log/obsidian_launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/robertprimmer/log/obsidian_launchd.log</string>
+    <key>RunAtLoad</key>
+    <true/>
+  </dict>
+</plist>
+
