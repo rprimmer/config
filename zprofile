@@ -1,4 +1,4 @@
-# I don't use /bin/sh interactively, but it is used in batch by some programs.
+# I don't use /bin/zsh interactively, but it is used in batch by some programs.
 # Therefore, need to add homebrew path here too
 
 # Homebrew is located in /usr/local on Intel macs and /opt/homebrew on ARM macs.

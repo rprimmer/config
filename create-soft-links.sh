@@ -24,6 +24,7 @@ ln -fsv "${HOME}"/Documents/linux/config/profile        .profile
 ln -fsv "${HOME}"/Documents/linux/config/ssh            .ssh
 ln -fsv "${HOME}"/Documents/linux/config/vimrc          .vimrc
 ln -fsv "${HOME}"/Documents/linux/config/emacs          .xemacs
+ln -fsv "${HOME}"/Documents/linux/config/zprofile       .zprofile
 ln -fsv "${HOME}"/Documents/linux/bin                   bin 
 ln -fsv "${HOME}"/Library/Mobile\ Documents/com~apple~CloudDocs ic
 ln -fsv "${HOME}"/Library/Mobile\ Documents/iCloud~md~obsidian/Documents ob
