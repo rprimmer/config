@@ -20,6 +20,7 @@ ln -fsv "${HOME}"/Documents/linux/config/dircolors      .dircolors
 ln -fsv "${HOME}"/Documents/linux/config/emacs/init.el  .emacs 
 ln -fsv "${HOME}"/Documents/linux/config/gitconfig      .gitconfig 
 ln -fsv "${HOME}"/Documents/linux/config/inputrc        .inputrc
+ln -fsv "${HOME}"/Documents/linux/config/profile        .profile
 ln -fsv "${HOME}"/Documents/linux/config/ssh            .ssh
 ln -fsv "${HOME}"/Documents/linux/config/vimrc          .vimrc
 ln -fsv "${HOME}"/Documents/linux/config/emacs          .xemacs
