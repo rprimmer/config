@@ -24,12 +24,13 @@ hash -p /usr/sbin/chown chown
 hash -p /usr/sbin/init init
 hash -p /sbin/shutdown shutdown
 
-# Set up his(1)
-preprompt() {
-    his --add -- "$(history 1)"
-}
-export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S %z] "
-PROMPT_COMMAND=preprompt
+# Set up his(1). 
+# 2024-06-29 : removed. the his command isn't working well, and hasn't proven worthwhile
+# preprompt() {
+#     his --add -- "$(history 1)"
+# }
+# export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S %z] "
+# PROMPT_COMMAND=preprompt
 
 # Generic functions
 
