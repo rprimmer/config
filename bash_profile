@@ -1,12 +1,12 @@
 # ~/.bash_profile
 # Use this file for globals, bashrc for locals 
 
-# Load user launch agents if not already loaded
-~/bin/load_launch_agents.sh
-
 # Use colors with man pages on my mac pro, but it's too dark on MBP
 if [[ $(uname -m) == "x86_64" ]]; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # Use colors with MAN pages
+
+  # Load user launch agents if not already loaded (MP only)
+  ~/bin/load_launch_agents.sh 
 fi
 
 # Homebrew is loacted in /usr/local on Intel macs and /opt/homebrew on ARM macs 
