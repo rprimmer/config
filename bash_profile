@@ -24,6 +24,12 @@ if [ -n "$BREW_PATH" ]; then
   export BASH=${BREW_PATH}/bin/bash   
   export SHELL=${BREW_PATH}/bin/bash  
   export PATH="$BREW_PATH:$PATH"
+
+  # set up Auto Jump for shell
+  test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/profile.d/autojump.sh"
+
+  # enable bash_completions package 
+  test -r "${BREW_PATH}/etc/profile.d/bash_completion.sh"  && source "${BREW_PATH}/etc/profile.d/bash_completion.sh"
 fi
 
 # My bin should always come first in the path
@@ -40,14 +46,8 @@ export PS1="\\w\\$ "
 # Uncomment below if using gls
 # export QUOTING_STYLE=literal
 
-# set up Auto Jump for shell
-test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/profile.d/autojump.sh"
-
 # iterm2 customizations
 test -r "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-# enable bash_completions package 
-test -r "${BREW_PATH}/etc/profile.d/bash_completion.sh"  && source "${BREW_PATH}/etc/profile.d/bash_completion.sh"
 
 # bashrc sets local environment vars and funcitons, aliases, etc
 test -r ~/.bashrc && source ~/.bashrc   
