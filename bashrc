@@ -50,9 +50,9 @@ rl() { local path=$(which "$1") ; readlink -f "$path" ; } # show symlink path
 
 # macOS-specific functions
 
-t() { command mv "$@" ~/.Trash ; }             # Move file(s) to macOS trash
+t() { command mv -v "$@" ~/.Trash ; }          # Move file(s) to macOS trash
 ql() { qlmanage -p "$*" >& /dev/null ; }       # Open file(s) in macOS Quicklook preview
-sl() { mdfind -name "$@" 2> /dev/null; }        # Find files with macOS spotlight metadata search
+sl() { mdfind -name "$@" 2> /dev/null; }       # Find files with macOS spotlight metadata search
 view-plist() { plutil -p "$@" ; }              # View macOS .plist files 
 
 # cd to the dir in active macOS Finder tab
