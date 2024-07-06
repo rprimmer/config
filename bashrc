@@ -1,9 +1,9 @@
 # ~/.bashrc
 
 # Locals
-HISTSIZE=25000             # number of commands to save in history file  
+HISTSIZE=1000             # number of commands to save in history file  
 #HISTIGNORE="?:??:&:exit"   # & says ignore duplicate cmds, ?:?? ignore 1 or 2 letter cmds
-HISTIGNORE="l?:&:exit"     # ingore l?, & says ignore duplicate cmds
+#HISTIGNORE="l?:&:exit"     # ingore l?, & says ignore duplicate cmds
 FIGNORE=".o:~"             # ignore these on cmd line completion
 FCEDIT=vi                  # use vi for fc bash builtin
 EDITOR=vi 

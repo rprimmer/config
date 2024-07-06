@@ -25,11 +25,12 @@ if [ -n "$BREW_PATH" ]; then
   export SHELL=${BREW_PATH}/bin/bash  
   export PATH="$BREW_PATH:$PATH"
 
-  # set up Auto Jump for shell
-  test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/profile.d/autojump.sh"
-
   # enable bash_completions package 
   test -r "${BREW_PATH}/etc/profile.d/bash_completion.sh"  && source "${BREW_PATH}/etc/profile.d/bash_completion.sh"
+
+  # set up Auto Jump for shell
+  # Commented out for now as I'm not finding myself using this function that often.
+  # test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/profile.d/autojump.sh"
 fi
 
 # My bin should always come first in the path
