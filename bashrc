@@ -1,9 +1,9 @@
 # ~/.bashrc
 
 # Locals
-HISTSIZE=1000             # number of commands to save in history file  
-#HISTIGNORE="?:??:&:exit"   # & says ignore duplicate cmds, ?:?? ignore 1 or 2 letter cmds
-#HISTIGNORE="l?:&:exit"     # ingore l?, & says ignore duplicate cmds
+HISTSIZE=1000              # number of commands to save in history file  
+#HISTIGNORE="?:??:&:exit"  # & says ignore duplicate cmds, ?:?? ignore 1 or 2 letter cmds
+#HISTIGNORE="l?:&:exit"    # ingore l?, & says ignore duplicate cmds
 FIGNORE=".o:~"             # ignore these on cmd line completion
 FCEDIT=vi                  # use vi for fc bash builtin
 EDITOR=vi 
@@ -24,14 +24,6 @@ hash -p /usr/sbin/chown chown
 hash -p /usr/sbin/init init
 hash -p /sbin/shutdown shutdown
 
-# Set up his(1). 
-# 2024-06-29 : removed. the his command isn't working well, and hasn't proven worthwhile
-# preprompt() {
-#     his --add -- "$(history 1)"
-# }
-# export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S %z] "
-# PROMPT_COMMAND=preprompt
-
 # Generic functions
 
 # display the top 10 commands in history buffer 
@@ -46,7 +38,6 @@ zipf() { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
 # ff () { find . -name "$@" ; }             # unnecessary with fd(1)
 dup() { cp "$1" "$1-COPY" ; }              # duplicate a file
 tab2sp() { sed -i '' $'s/\t/    /g' $(find . -name "$1") ; }  #convert tabs to 4 spaces
-rl() { local path=$(which "$1") ; readlink -f "$path" ; } # show symlink path
 
 # macOS-specific functions
 
