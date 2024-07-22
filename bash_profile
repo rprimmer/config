@@ -4,8 +4,10 @@
 # Use colors with man pages on my mac pro, but it's too dark on MBP
 if [[ $(uname -m) == "x86_64" ]]; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # Use colors with MAN pages
+fi
 
-  # Load user launch agents if not already loaded (MP only)
+if [[ $(uname -m) == "arm64" ]]; then
+  # Load user launch agents if not already loaded (MBP-M2 only)
   ~/bin/load_launch_agents.sh 
 fi
 
