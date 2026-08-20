@@ -1,50 +1,61 @@
 # ~/.bashrc
 
+[[ $- != *i* ]] && return   # Guard against non-interactive use 
+
 # Locals
-HISTSIZE=1000              # number of commands to save in history file  
-#HISTIGNORE="?:??:&:exit"  # & says ignore duplicate cmds, ?:?? ignore 1 or 2 letter cmds
-#HISTIGNORE="l?:&:exit"    # ingore l?, & says ignore duplicate cmds
-FIGNORE=".o:~"             # ignore these on cmd line completion
-FCEDIT=vi                  # use vi for fc bash builtin
-EDITOR=vi 
+HISTSIZE=20000
+HISTFILESIZE=40000
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+shopt -s cmdhist          # multi-line commands as one entry
+# Share history across multiple terminal sessions (lightweight)
+case "$PROMPT_COMMAND" in
+  *"history -a; history -n"*) ;;
+  *) PROMPT_COMMAND="history -a; history -n${PROMPT_COMMAND:+; $PROMPT_COMMAND}" ;;
+esac
 
-# Shell options 
-set -m                     # enable job control
-set -o ignoreeof           # CTRL-D will not kill terminal session
-shopt -s cdspell           # correct minor spelling erros on cd command
-shopt -s checkjobs         # don't exit bash on first exit if running jobs exist
-shopt -s globstar          # enables **/* recursive dir access, akin to zsh(1)
+FIGNORE=".o:~"              # ignore these on cmd line completion
+FCEDIT=vim                  # use vi for fc bash builtin
+export EDITOR=vim           # exported so external tools (git, crontab -e, etc.) see it
 
-# set dircolors 
-eval $(gdircolors ~/.dircolors/dircolors.256dark)  
+# Shell options
+set -m                      # enable job control
+set -o ignoreeof            # CTRL-D will not kill terminal session
+shopt -s cdspell            # correct minor spelling errors on cd command
+shopt -s checkjobs          # don't exit bash on first exit if running jobs exist
+shopt -s globstar           # enables **/* recursive dir access, akin to zsh(1)
+
+# set dircolors
+if command -v gdircolors >/dev/null 2>&1 && [[ -r "$HOME/.dircolors/dircolors.256dark" ]]; then
+  eval "$(gdircolors "$HOME/.dircolors/dircolors.256dark")"
+fi
 
 # hash specific commands outside normal search list
-# Note: hashed commands are accessible via bash command completion by default
-hash -p /usr/sbin/chown chown
-hash -p /usr/sbin/init init
-hash -p /sbin/shutdown shutdown
+[[ -x /usr/sbin/chown ]] && hash -p /usr/sbin/chown chown
+[[ -x /usr/sbin/init ]] && hash -p /usr/sbin/init init
+[[ -x /sbin/shutdown ]] && hash -p /sbin/shutdown shutdown
 
 # Generic functions
 
-# display the top 10 commands in history buffer 
+# display the top 10 commands in history buffer
 top10() {
    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
-mkd() { mkdir -p "$@" && cd "$_" ; }       # create a new dir and enter it
-lcd() { cd "$@" ; eza  -aFl ; }            # enter dir, list contents 
-hex2dec() { printf "%d\n" "$@" ; }         # print hex (0xn) or octal (0n) as decimal
-zipf() { zip -r -dc "$1".zip "$1" ; }      # create ZIP archive of a folder
+mkd() { mkdir -p "$@" && cd "$_" ; }        # create a new dir and enter it
+lcd() { cd "$1" && eza -aFl; }              # enter dir, list contents
+hex2dec() { printf "%d\n" "$@" ; }          # print hex (0xn) or octal (0n) as decimal
+zipf() { zip -r "$1".zip "$1" ; }           # create ZIP archive of a folder
 # ff () { find . -name "$@" ; }             # unnecessary with fd(1)
-dup() { cp "$1" "$1-COPY" ; }              # duplicate a file
-tab2sp() { sed -i '' $'s/\t/    /g' $(find . -name "$1") ; }  #convert tabs to 4 spaces
+dup() { cp "$1" "$1-COPY" ; }               # duplicate a file
+tab2sp() { find . -name "$1" -print0 | xargs -0 sed -i '' $'s/\t/    /g'; } # convert tabs to 4 spaces
 
 # macOS-specific functions
 
-t() { command mv -v "$@" ~/.Trash ; }          # Move file(s) to macOS trash
-ql() { qlmanage -p "$*" >& /dev/null ; }       # Open file(s) in macOS Quicklook preview
-sl() { mdfind -name "$@" 2> /dev/null; }       # Find files with macOS spotlight metadata search
-view-plist() { plutil -p "$@" ; }              # View macOS .plist files 
+t() { command mv -v "$@" ~/.Trash ; }       # Move file(s) to macOS trash
+ql() { qlmanage -p "$@" >& /dev/null ; }    # Open file(s) in macOS Quicklook preview   
+sl() { mdfind -name "$@" 2> /dev/null; }    # Find files with macOS spotlight metadata search
+view-plist() { plutil -p "$@" ; }           # View macOS .plist files
 
 # cd to the dir in active macOS Finder tab
 cdf () {
@@ -60,30 +71,36 @@ cdf () {
 EOT
     )
     echo "cd to \"$currFolderPath\""
-    cd "$currFolderPath" || exit
+    cd "$currFolderPath" || return 
 }
 
 # cd(1) to the needlessly complicated iCloud directory paths
+# iCloud / Mobile Documents paths (define once)
+ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+ICLOUD_PAGES="$HOME/Library/Mobile Documents/com~apple~Pages/Documents"
+ICLOUD_NUMBERS="$HOME/Library/Mobile Documents/com~apple~Numbers/Documents"
+ICLOUD_KEYNOTE="$HOME/Library/Mobile Documents/com~apple~Keynote/Documents"
+ICLOUD_PREVIEW="$HOME/Library/Mobile Documents/com~apple~Preview/Documents"
+ICLOUD_OBSIDIAN="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian_Main"
+
 ic () {
-   if [ -z $1 ]  ;  then
-        cd ~/ic || exit             # CloudDocs
-   else
-       case $1 in
-            c)   cd ~/Documents/linux/config || exit  ;; 
-            k)   cd ~/Libary/Mobile\ Documents/com~apple~Keynote/Documents || exit   ;; 
-            l)   cd ~/Documents/linux || exit  ;;   
-            n)   cd ~/Libary/Mobile\ Documents/com~apple~Numbers/Documents || exit   ;; 
-            o)   cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian_Main || exit ;;
-            p)   cd ~/Library/Mobile\ Documents/com~apple~Pages/Documents || exit    ;; 
-            pr)  cd ~/Library/Mobile\ Documents/com~apple~Preview/Documents || exit  ;; 
-            py)  cd ~/Documents/src/python || exit  ;; 
-            s)   cd ~/Documents/src || exit  ;;   
-            sw)  cd ~/Documents/src/Swift || exit ;;           
-            ?)   echo "c - config; k - keynote; l - linux; n - numbers; o - obsidian; p - pages; pr - preview; py - python; s - src; sw - swift" ;;
-            *)   echo "'$1' invalid option" ;;
-       esac
-    fi
+    case ${1:-} in
+        "")  cd "$ICLOUD_DRIVE" || return ;;
+        c)   cd ~/Documents/linux/config || return ;;
+        k)   cd "$ICLOUD_KEYNOTE" || return ;;
+        l)   cd ~/Documents/linux || return ;;
+        n)   cd "$ICLOUD_NUMBERS" || return ;;
+        o)   cd "$ICLOUD_OBSIDIAN" || return ;;
+        p)   cd "$ICLOUD_PAGES" || return ;;
+        pr)  cd "$ICLOUD_PREVIEW" || return ;;
+        py)  cd ~/Documents/src/python || return ;;
+        s)   cd ~/Documents/src || return ;;
+        sw)  cd ~/Documents/src/Swift || return ;;
+        ?)   echo "c config | k keynote | l linux | n numbers | o obsidian | p pages | pr preview | py python | s src | sw swift" ;;
+        *)   echo "'$1' invalid option" ;;
+    esac
 }
+
 
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
