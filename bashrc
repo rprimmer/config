@@ -48,7 +48,14 @@ hex2dec() { printf "%d\n" "$@" ; }          # print hex (0xn) or octal (0n) as d
 zipf() { zip -r "$1".zip "$1" ; }           # create ZIP archive of a folder
 # ff () { find . -name "$@" ; }             # unnecessary with fd(1)
 dup() { cp "$1" "$1-COPY" ; }               # duplicate a file
-tab2sp() { find . -name "$1" -print0 | xargs -0 sed -i '' $'s/\t/    /g'; } # convert tabs to 4 spaces
+
+# convert tabs to 4 spaces
+tab2sp() {
+  find . -type f -name "$1" -print0 |
+    while IFS= read -r -d '' f; do
+      sed -i '' $'s/\t/    /g' "$f"
+    done
+}
 
 # macOS-specific functions
 

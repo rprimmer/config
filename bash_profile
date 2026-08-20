@@ -22,7 +22,7 @@ elif command -v brew >/dev/null 2>&1; then
 else
     echo "Homebrew is essential but not found. Please install Homebrew."
     BREW_PATH=""
-fi
+fi 
 
 if [ -n "$BREW_PATH" ]; then
   eval "$("${BREW_PATH}"/bin/brew shellenv)"

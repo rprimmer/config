@@ -1,6 +1,6 @@
 # ~/.bash_aliases
 
-# misc aliases
+# misc aliases 
 alias b=bat
 alias batc="bat --color never"   
 alias c=cat    
