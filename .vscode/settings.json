@@ -5,6 +5,15 @@
         "files.trimTrailingWhitespace": true
     },
 
+    "files.associations": {
+    "bash_aliases": "shellscript",
+    ".bash_aliases": "shellscript",
+    "bashrc": "shellscript",
+    ".bashrc": "shellscript",
+    "bash_profile": "shellscript",
+    ".bash_profile": "shellscript"
+    }
+
     "cSpell.words": [
         "apidoc",
         "argparse",
@@ -23,6 +32,7 @@
         "FCEDIT",
         "FIGNORE",
         "foo",
+        "funcs",
         "gdircolors",
         "getairportnetwork",
         "getifaddr",
@@ -46,8 +56,12 @@
         "openports",
         "osascript",
         "pathex",
+        "plutil",
+        "popd",
+        "pushd",
         "qlmanage",
         "Quicklook",
+        "realpath",
         "shellenv",
         "textutil",
         "untarball",

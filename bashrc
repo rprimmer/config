@@ -5,17 +5,17 @@
 # Locals
 HISTSIZE=20000
 HISTFILESIZE=40000
-HISTCONTROL=ignoreboth:erasedups
-shopt -s histappend
-shopt -s cmdhist          # multi-line commands as one entry
+HISTCONTROL=ignoreboth:erasedups    # do not store duplicate entries and ignore commands that start with a space
+shopt -s histappend         # append to history, don't overwrite it
+shopt -s cmdhist            # multi-line commands as one entry
 # Share history across multiple terminal sessions (lightweight)
 case "$PROMPT_COMMAND" in
   *"history -a; history -n"*) ;;
   *) PROMPT_COMMAND="history -a; history -n${PROMPT_COMMAND:+; $PROMPT_COMMAND}" ;;
 esac
 
-FIGNORE=".o:~"              # ignore these on cmd line completion
-FCEDIT=vim                  # use vi for fc bash builtin
+FIGNORE=".o:~"              # ignore object files and backup files in filename completion
+FCEDIT=vim                  # editor for fc(1) command
 export EDITOR=vim           # exported so external tools (git, crontab -e, etc.) see it
 
 # Shell options
@@ -58,7 +58,6 @@ tab2sp() {
 }
 
 # macOS-specific functions
-
 t() { command mv -v "$@" ~/.Trash ; }       # Move file(s) to macOS trash
 ql() { qlmanage -p "$@" >& /dev/null ; }    # Open file(s) in macOS Quicklook preview   
 sl() { mdfind -name "$@" 2> /dev/null; }    # Find files with macOS spotlight metadata search
@@ -108,7 +107,4 @@ ic () {
     esac
 }
 
-
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases

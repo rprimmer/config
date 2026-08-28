@@ -12,9 +12,9 @@ if [[ $(uname -m) == "x86_64" ]]; then
 fi
 
 # Locate Homebrew dynamically by checking for the executable
-if [ -x "/opt/homebrew/bin/brew" ]; then
+if [[ -x "/opt/homebrew/bin/brew" ]]; then
     BREW_PATH="/opt/homebrew"
-elif [ -x "/usr/local/bin/brew" ]; then
+elif [[ -x "/usr/local/bin/brew" ]]; then
     BREW_PATH="/usr/local"
 elif command -v brew >/dev/null 2>&1; then
     # Fallback: if brew is already in the PATH but in a non-standard location
@@ -24,8 +24,7 @@ else
     BREW_PATH=""
 fi 
 
-if [ -n "$BREW_PATH" ]; then
-  eval "$("${BREW_PATH}"/bin/brew shellenv)"
+[[ -n "$BREW_PATH" ]] && eval "$("${BREW_PATH}"/bin/brew shellenv)"
 
 # Use brew version of bash, Apple's version is ancient
 if [[ -x "${BREW_PATH}/bin/bash" ]]; then
@@ -33,13 +32,11 @@ if [[ -x "${BREW_PATH}/bin/bash" ]]; then
   export SHELL="${BREW_PATH}/bin/bash"
 fi
 
-  # enable bash_completions package
-  test -r "${BREW_PATH}/etc/profile.d/bash_completion.sh" && source "${BREW_PATH}/etc/profile.d/bash_completion.sh"
+# enable bash_completions package
+[[ -r "${BREW_PATH}/etc/profile.d/bash_completion.sh" ]] && source "${BREW_PATH}/etc/profile.d/bash_completion.sh"
 
-  # set up Auto Jump for shell
-  # Commented out for now as I'm not finding myself using this function that often.
-  # test -r "${BREW_PATH}/etc/profile.d/autojump.sh" && source "${BREW_PATH}/etc/profile.d/autojump.sh"
-fi
+# set up Auto Jump for shell
+# [[ -r "${BREW_PATH}/etc/profile.d/autojump.sh" ]] && source "${BREW_PATH}/etc/profile.d/autojump.sh"
 
 # My bin should always come first in the path
 export PATH="$HOME/bin:${PATH}"
@@ -56,7 +53,7 @@ export PS1="\\w\\$ "
 # export QUOTING_STYLE=literal
 
 # iterm2 customizations
-test -r "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+[[ -r "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
 
 # bashrc sets local environment vars and functions, aliases, etc
-test -r ~/.bashrc && source ~/.bashrc
+[[ -r ~/.bashrc ]] && source ~/.bashrc
