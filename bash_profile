@@ -6,11 +6,6 @@ if [[ $(uname -m) == "x86_64" ]]; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # Use colors with MAN pages
 fi
 
-# Load user launch agents if not already loaded (MP only)
-if [[ $(uname -m) == "x86_64" ]]; then
-  [[ -x "$HOME/bin/load_launch_agents.sh" ]] && "$HOME/bin/load_launch_agents.sh"
-fi
-
 # Locate Homebrew dynamically by checking for the executable
 if [[ -x "/opt/homebrew/bin/brew" ]]; then
     BREW_PATH="/opt/homebrew"
